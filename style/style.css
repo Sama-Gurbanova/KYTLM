@@ -1,0 +1,262 @@
+/* Təməl sıfırlama: Brauzerin standart boşluqlarını silir və bütün elementlərə Inter şriftini tətbiq edir */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Saytın ən üst hissəsindəki rəsmi dövlət məlumat zolağı */
+.top-bar {
+    background-color: #F0F2F5;
+    padding: 8px 0;
+    width: 100%;
+    z-index: 2000;
+    position: relative;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Konteynerin ümumi flex xassəsini top-bar üçün ləğv edirik */
+.top-bar .container {
+    display: block; 
+}
+
+/* Elementləri bir sütun daxilində toplamaq üçün */
+.top-bar-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.top-bar-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Yazını sola sıxır */
+    font-size: 12px;
+    color: #4A4A4A;
+}
+
+.gov-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.flag-icon {
+    width: 18px;
+    height: auto;
+}
+
+.check-link {
+    color: #0056B3;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+/* Necə yoxlamaq olar düyməsi üçün spesifik stil */
+.check-link-btn {
+    background: none;
+    border: none;
+    color: #0056B3;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Məlumat Paneli - İlkin olaraq gizli */
+.gov-info-panel {
+    display: none; 
+    width: 100%;
+    background-color: #f0f2f5;
+    padding: 25px 0;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 8px;
+    position: relative; /* Bu, navbar-ı aşağı itələməyə kömək edəcək */
+    z-index: 1002;
+}
+
+/* Panel aktiv olanda (JavaScript ilə) görünməsi üçün */
+.gov-info-panel.active {
+    display: block;
+}
+
+/* İki sütunlu struktur */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    padding: 10px 0;
+}
+
+.info-item {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.info-icon { font-size: 24px; }
+
+.info-text h4 {
+    font-size: 14px;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.info-text p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #4A4A4A;
+}
+
+.official-link {
+    color: #0056B3;
+    text-decoration: underline;
+    font-size: 13px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* Əsas Konteyner: Elementlərin ekranın mərkəzində və müəyyən genişlikdə (92%) qalmasını təmin edir */
+.container {
+    width: 92%;
+    max-width: 1800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Naviqasiya Paneli: Hero section-ın (fon şəklinin) üzərində şəffaf şəkildə yerləşir */
+.navbar {
+    position: absolute;
+    top: 40px; /* 100% əvəzinə sabit rəqəm yazırıq */
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Hero-dan üstə olması üçün */
+    padding-top: 25px;
+}
+
+/* Navbar daxilindəki zərif üfüqi xətt */
+.navbar .container {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+    padding-bottom: 20px;
+}
+
+/* Loqo və Mətn iyerarxiyası */
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-text { display: flex; flex-direction: column; color: white; text-transform: uppercase; }
+.logo-text b { font-size: 11px; line-height: 1.2; }
+.logo-text small { font-size: 8px; opacity: 0.8; margin-top: 2px; }
+
+/* Menyu linkləri və sözlər arası məsafə */
+.nav-links { display: flex; gap: 45px; list-style: none; }
+.nav-links a { color: white; text-decoration: none; font-size: 16px; transition: 0.3s; }
+.nav-links a:hover { opacity: 0.7; }
+
+/* Sağ tərəf: Dil seçimi və Axtarış düymələri */
+.header-right 
+{ 
+    display: flex; 
+    gap: 8px;
+}
+
+/* Dil seçimi və Effektlər */
+.header-box {
+    width: 42px; 
+    height: 42px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    color: white; 
+    font-size: 13px; 
+    cursor: pointer;
+    background-image: url('/style/assets/images/cercive.png');
+    background-size: cover;
+    transition: all 0.3s ease; /* Hamar keçid üçün */
+}
+
+/* Hover zamanı bozarma effekti */
+.header-box:hover {
+    filter: brightness(0.8); /* Elementi tündləşdirərək bozardır */
+}
+
+/* Dil seçimi Dropdown mexanizmi */
+.lang-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* Açılan menyunun (EN) mövqeyi: AZ qutusunun tam altında yerləşir */
+.dropdown-content {
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    display: none;  /* İlkin halda gizli saxlanılır */
+    z-index: 100;
+}
+
+/* Mouse ilə üzərinə gəldikdə EN seçimini göstərir */
+.lang-wrapper:hover .dropdown-content {
+    display: block;
+}
+
+/* Əsas Giriş Bölməsi (Hero): Fon şəkli və mərkəzi mətn */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), 
+                url('/style/assets/images/MainBackground.jpg'); 
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 64px;
+    max-width: 900px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: white;
+}
+
+.hero p { font-size: 18px; opacity: 0.9; color: white; }
+ 
+/* Alt hissədəki Naviqasiya: oxlar sağa sıxılıb */
+.hero-footer {
+    position: absolute;
+    bottom: 50px;
+    left: 4%;
+    right: 4%;
+    width: 92%;
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+}
+
+/* İdarəetmə Oxları */
+.arrows { display: flex; gap: 12px; }
+.arrows button {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    width: 48px; 
+    height: 48px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    cursor: pointer; 
+    transition: 0.3s;
+}
+
+/* Oxların üzərinə gələndə rənglərin inversiya olması (Figma effekti) */
+.arrows button:hover { 
+    background: white; 
+    color: black; 
+}
+

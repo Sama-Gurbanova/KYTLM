@@ -103,7 +103,7 @@
 }
 .lang-wrapper:hover .dropdown-content { display: block; }
 
-/* Hero Section */
+/* HERO SECTION */
 .hero {
     height: 100vh;
     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
@@ -139,6 +139,8 @@
 }
 .arrows button:hover { background: white; color: black; }
 
+
+/* FOOTER */
 .main-footer {
     position: relative;
     background-color:#222A27!important; 
@@ -277,4 +279,187 @@
     color: white !important; /* Digər yazı ilə tam eyni rəng */
     text-decoration: none !important;
     transition: 0.3s;
+}
+
+
+/* GENEL AYARLAR - Kənar məsafələri  */
+.container {
+    width: 90% !important;
+    max-width: 1600px !important;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ABOUT SECTION - Hizalanma və Şəkil ölçüsü */
+.about-section {
+    padding: 110px 0;
+    background-color: #fff;
+}
+
+.about-wrapper {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center; /* Şəkil və mətni ortaya hizarla */
+    gap: 80px;
+    height: auto !important; /* Sabit hündürlüyü ləğv edirik ki, məzmun sığsın */
+}
+
+.about-content { flex: 1.2; }
+
+.section-title {
+    color: #1D9F6F;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.about-text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 50px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 25px 0;
+    border-bottom: 1px solid #efefef;
+}
+
+.stat-number {
+    font-size: 48px;
+    font-weight: 800;
+    color: #1A1D1C;
+    min-width: 110px;
+}
+
+.about-image img {
+    width: 100% !important;
+    max-width: 650px;
+    height: auto !important;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-top: 0; /* Artıq boşluğu yığışdırdıq */
+}
+
+/* SERVICES SECTION - Watermark və Aktiv Rənglər */
+.services-section {
+    padding: 120px 0;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Arxa fondakı loqo (Watermark) */
+.services-section::after {
+    content: "";
+    position: absolute;
+    right: -50px; /* Bir az kənara çıxması üçün */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 700px;
+    height: 700px;
+    background-image: url('/style/assets/icons/Vector.png'); 
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.04;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.services-section .container {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+}
+
+.services-title {
+    color: #1D9F6F;
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 80px;
+    z-index: 1;
+}
+
+.services-list {
+    width: 100%;
+    max-width: 1100px;
+}
+
+/* AKTİV ELEMENT ÜÇÜN RƏNG DƏYİŞİKLİYİ */
+.service-item.active .service-title {
+    color: #1D9F6F !important; /* Aktiv olanda başlıq yaşıl olur */
+}
+
+.service-item.active .service-number {
+    opacity: 1;
+    font-weight: 600;
+}
+
+.service-item {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 45px 0;
+    transition: all 0.3s ease;
+}
+
+.service-header {
+    display: flex;
+    justify-content: space-between; /* Nömrəni sol küncə, togglenini sağ küncə itələyir */
+    align-items: flex-start; /* Nömrə və başlığı eyni hizada saxlayır */
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.service-number {
+    color: #6E7576;
+    font-size: 20px; /* Nömrə ölçüsü */
+    font-weight: 400;
+    min-width: 60px; /* Nömrənin mətndən məsafəsi */
+    opacity: 0.6;
+}
+
+.service-title {
+    flex: 1; /* Başlığın bütün genişliyi tutmasını təmin edir */
+    font-size: 28px; /* Başlıq ölçüsü */
+    font-weight: bold;
+    color: #1A1D1C; /* Tünd boz */
+    margin: 0;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.service-toggle {
+    color: #1D9F6F;
+    font-size: 40px;
+    font-weight: 300;
+    min-width: 50px;
+    text-align: right;
+    line-height: 1;
+}
+
+.service-content {
+    margin-top: 30px;
+    padding-left: 75px; /* Nömrənin altını boş saxlayırıq */
+    display: none; /* Standart halda gizlədirik */
+    animation: fadeIn 0.3s ease-in; /* Açılış animasiyası */
+}
+
+.service-description {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #444;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

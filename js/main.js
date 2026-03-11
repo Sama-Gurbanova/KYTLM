@@ -24,4 +24,28 @@ document.addEventListener('DOMContentLoaded', function() {
             if(arrow) arrow.textContent = '▾';
         }
     });
+
+    const serviceItems = document.querySelectorAll('.service-item');
+
+serviceItems.forEach(item => {
+    const header = item.querySelector('.service-header');
+    
+    header.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+
+        // Digər açıq olanları bağla
+        serviceItems.forEach(el => {
+            el.classList.remove('active');
+            el.querySelector('.service-content').style.display = 'none';
+            el.querySelector('.service-toggle').textContent = '+';
+        });
+
+        // Seçiləni aç
+        if (!isActive) {
+            item.classList.add('active');
+            item.querySelector('.service-content').style.display = 'block';
+            item.querySelector('.service-toggle').textContent = '−';
+        }
+    });
+});
 });

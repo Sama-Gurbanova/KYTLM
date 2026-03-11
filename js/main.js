@@ -126,6 +126,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 item.querySelector('.service-content').style.display = 'block';
                 item.querySelector('.service-toggle').textContent = '−';
             }
-        });
+            });
     });
+
+    // Layihələr Slideri
+    const projectSlides = document.querySelectorAll('.project-slide');
+    const projectsPrev = document.querySelector('.projects-prev');
+    const projectsNext = document.querySelector('.projects-next');
+    let currentProject = 0;
+
+    function showProject(index) {
+        if (projectSlides.length === 0) return;
+
+        if (index >= projectSlides.length) {
+            currentProject = 0;
+        } else if (index < 0) {
+            currentProject = projectSlides.length - 1;
+        } else {
+            currentProject = index;
+        }
+
+        projectSlides.forEach(slide => slide.classList.remove('active'));
+        projectSlides[currentProject].classList.add('active');
+    }
+
+    if (projectsNext) {
+        projectsNext.addEventListener('click', () => {
+            showProject(currentProject + 1);
+        });
+    }
+
+    if (projectsPrev) {
+        projectsPrev.addEventListener('click', () => {
+            showProject(currentProject - 1);
+        });
+    }
+
+    if (projectSlides.length > 0) {
+        showProject(0);
+    }
 });

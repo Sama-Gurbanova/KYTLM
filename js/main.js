@@ -25,27 +25,107 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    const serviceItems = document.querySelectorAll('.service-item');
+    // Hero Slider Funksionallığı
+    const slides = document.querySelectorAll('.hero-slide');
+    const prevButton = document.querySelector('.hero .prev');
+    const nextButton = document.querySelector('.hero .next');
+    let currentSlide = 0;
+    let autoSlideInterval;
 
-serviceItems.forEach(item => {
-    const header = item.querySelector('.service-header');
-    
-    header.addEventListener('click', () => {
-        const isActive = item.classList.contains('active');
+    // Slider funksiyası
+    function showSlide(index) {
+        // İndeksin düzgün olmasını təmin et
+        if (index >= slides.length) {
+            currentSlide = 0;
+        } else if (index < 0) {
+            currentSlide = slides.length - 1;
+        } else {
+            currentSlide = index;
+        }
 
-        // Digər açıq olanları bağla
-        serviceItems.forEach(el => {
-            el.classList.remove('active');
-            el.querySelector('.service-content').style.display = 'none';
-            el.querySelector('.service-toggle').textContent = '+';
+        // Bütün slideları gizlət
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
         });
 
-        // Seçiləni aç
-        if (!isActive) {
-            item.classList.add('active');
-            item.querySelector('.service-content').style.display = 'block';
-            item.querySelector('.service-toggle').textContent = '−';
-        }
+        // Aktiv slide-i göstər
+        slides[currentSlide].classList.add('active');
+    }
+
+    // Növbəti slide
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+        resetAutoSlide();
+    }
+
+    // Əvvəlki slide
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+        resetAutoSlide();
+    }
+
+    // Avtomatik slider
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(() => {
+            nextSlide();
+        }, 5000); // 5 saniyədə bir dəyişir
+    }
+
+    // Avtomatik slider-i sıfırla
+    function resetAutoSlide() {
+        clearInterval(autoSlideInterval);
+        startAutoSlide();
+    }
+
+    // Button event listener-ləri
+    if (nextButton) {
+        nextButton.addEventListener('click', nextSlide);
+    }
+
+    if (prevButton) {
+        prevButton.addEventListener('click', prevSlide);
+    }
+
+    // İlk slide-i göstər və avtomatik slider-i başlat
+    if (slides.length > 0) {
+        showSlide(0);
+        startAutoSlide();
+    }
+
+    // Mouse hover olduqda avtomatik slider-i dayandır
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        heroSection.addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
+        });
+
+        heroSection.addEventListener('mouseleave', () => {
+            startAutoSlide();
+        });
+    }
+
+    // Service Items Funksionallığı
+    const serviceItems = document.querySelectorAll('.service-item');
+
+    serviceItems.forEach(item => {
+        const header = item.querySelector('.service-header');
+        
+        header.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            // Digər açıq olanları bağla
+            serviceItems.forEach(el => {
+                el.classList.remove('active');
+                el.querySelector('.service-content').style.display = 'none';
+                el.querySelector('.service-toggle').textContent = '+';
+            });
+
+            // Seçiləni aç
+            if (!isActive) {
+                item.classList.add('active');
+                item.querySelector('.service-content').style.display = 'block';
+                item.querySelector('.service-toggle').textContent = '−';
+            }
+        });
     });
-});
 });

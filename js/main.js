@@ -253,4 +253,76 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         updateAllRows();
     }
+
+    // Media Slider
+    const mediaTrack = document.querySelector('.media-track');
+    const mediaPrev = document.querySelector('.media-prev');
+    const mediaNext = document.querySelector('.media-next');
+    const mediaItems = document.querySelectorAll('.media-item');
+    let currentMediaIndex = 0;
+
+    function getMediaPerView() {
+        const width = window.innerWidth;
+        if (width > 1400) return 3;
+        if (width > 900) return 2;
+        return 1;
+    }
+
+    function updateMediaSlider() {
+        if (!mediaTrack || mediaItems.length === 0) return;
+        
+        const mediaPerView = getMediaPerView();
+        const totalMedia = mediaItems.length;
+        const maxIndex = Math.max(0, totalMedia - mediaPerView);
+        
+        currentMediaIndex = Math.min(currentMediaIndex, maxIndex);
+        currentMediaIndex = Math.max(0, currentMediaIndex);
+        
+        if (mediaItems[0]) {
+            const firstItem = mediaItems[0];
+            const style = window.getComputedStyle(mediaTrack);
+            const gap = parseFloat(style.gap) || 0;
+            const itemWidth = firstItem.offsetWidth;
+            const translateX = -currentMediaIndex * (itemWidth + gap);
+            mediaTrack.style.transform = `translateX(${translateX}px)`;
+        }
+    }
+
+    function showNextMedia() {
+        const mediaPerView = getMediaPerView();
+        const totalMedia = mediaItems.length;
+        const maxIndex = Math.max(0, totalMedia - mediaPerView);
+        currentMediaIndex = Math.min(currentMediaIndex + 1, maxIndex);
+        updateMediaSlider();
+    }
+
+    function showPrevMedia() {
+        currentMediaIndex = Math.max(0, currentMediaIndex - 1);
+        updateMediaSlider();
+    }
+
+    if (mediaNext) {
+        mediaNext.addEventListener('click', showNextMedia);
+    }
+
+    if (mediaPrev) {
+        mediaPrev.addEventListener('click', showPrevMedia);
+    }
+
+    // Responsive update for media
+    let mediaResizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(mediaResizeTimeout);
+        mediaResizeTimeout = setTimeout(() => {
+            updateMediaSlider();
+        }, 250);
+    });
+
+    // Initialize media slider
+    if (mediaItems.length > 0) {
+        window.addEventListener('load', () => {
+            setTimeout(updateMediaSlider, 100);
+        });
+        updateMediaSlider();
+    }
 });

@@ -631,20 +631,22 @@
 
 /* PARTNERS SECTION (Tərəfdaşlarımız slideri) */
 .partners-section {
-   padding: 100px 0;
-    width: 100%;
+    padding: 120px 0;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .partners-section .container {
-    width: 95%;
-    max-width: 1750px; /* Slider-in genişliyinə uyğunlaşdırıldı */
-    margin: 0 auto;
+    width: 100%;
+    max-width: 1320px;
     display: flex;
     flex-direction: column;
 }
 
 .partners-header {
-   display: flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
@@ -686,9 +688,14 @@
 }
 
 .partners-slider {
-    width: 95% !important; /* Kənarlardakı boşluğu minimuma endiririk */
-    max-width: 1750px !important; 
+    position: relative;
+    width: 1320px;
+    height: 520px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
 }
 
 .partners-row {
@@ -700,7 +707,7 @@
 
 .partners-track {
     display: flex;
-    gap: 20px; /* Çərçivələr arası məsafə */
+    gap: 30px; /* Çərçivələr arası məsafə */
     transition: transform 0.5s ease-in-out;
     will-change: transform;
     width: fit-content;
@@ -709,14 +716,20 @@
 }
 
 .partner-logo {
-   flex: 0 0 260px; /* Loqo qutularını böyüdürük */
-    height: 180px; 
-    background: #f9f9f9; /* Figmadakı o yüngül boz fon */
-    border-radius: 8px; /* Künclərin yüngül qövsvari olması */
+    flex: 0 0 200px;
+    width: 200px;
+    height: 200px;
+    min-width: 200px;
+    max-width: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 0.3s;
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 10px;
+    padding: 30px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
 }
 
 .partner-logo:hover {
@@ -726,19 +739,19 @@
 }
 
 .partner-logo img {
-    max-width: 75%; /* Loqolar qutunun içində daha dolğun görünsün */
-}
-
-.partner-logo:hover img {
-    filter: grayscale(0%);
-    opacity: 1;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
 }
 
 /* Responsive design for partners */
 @media (max-width: 1400px) {
     .partner-logo {
-        flex: 0 0 200px; /* Bütün ekranlarda eyni qalacaqsa, bir dəfə bəsdir */
-        height: 180px;
+        width: 200px;
+        height: 200px;
+        min-width: 200px;
     }
 }
 
@@ -763,5 +776,158 @@
         width: 200px;
         height: 200px;
         min-width: 200px;
+    }
+}
+
+/* MEDIA SECTION */
+.media-section {
+    padding: 120px 0;
+    background-color: #fff;
+    width: 100%;
+}
+
+.media-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 1700px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.media-title {
+    color: #1D9F6F;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.media-arrows {
+    display: flex;
+    gap: 10px;
+}
+
+.media-arrows button {
+    background: transparent;
+    border: 1px solid rgba(0,0,0,0.1);
+    color: #222;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.media-arrows button:hover {
+    background: #1D9F6F;
+    color: #fff;
+    border-color: #1D9F6F;
+}
+
+.media-slider {
+    position: relative;
+    width: 1320px;
+    height: 520px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+}
+
+.media-track {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+}
+
+.media-item {
+    flex: 0 0 424px; 
+    width: 424px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 0; 
+    overflow: hidden;
+}
+
+.media-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.media-image {
+    width: 424px;
+    height: 300px;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+.media-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Şəkli əzilməyə qoymur */
+}
+
+.media-item:hover .media-image img {
+    transform: scale(1.05);
+}
+
+.media-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.media-date {
+    font-size: 14px;
+    color: #999;
+    font-weight: 400;
+}
+
+.media-heading {
+    font-size: 18px;
+    color: #1A1D1C;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Responsive design for media */
+@media (max-width: 1440px) {
+    .media-header,
+    .media-slider {
+        width: 100%;
+        max-width: 1200px;
+    }
+    
+    .media-item {
+        flex: 0 0 380px;
+        width: 380px;
+    }
+}
+
+@media (max-width: 900px) {
+    .media-item {
+        flex: 0 0 300px;
+        width: 300px;
+    }
+
+    .media-image {
+        width: 100%;
+        height: 260px;
+    }
+}
+
+@media (max-width: 600px) {
+    .media-item {
+        flex: 0 0 280px;
+        width: 280px;
     }
 }

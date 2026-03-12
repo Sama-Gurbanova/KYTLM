@@ -165,4 +165,92 @@ document.addEventListener('DOMContentLoaded', function() {
     if (projectSlides.length > 0) {
         showProject(0);
     }
+
+    // Tərəfdaşlarımız Slideri (2 sətir - hər sətirdə 6 loqo)
+    const partnersRows = document.querySelectorAll('.partners-row .partners-track');
+    const partnersPrev = document.querySelector('.partners-prev');
+    const partnersNext = document.querySelector('.partners-next');
+    let currentPartnerIndex = [0, 0]; // Hər sətir üçün ayrı indeks
+
+    function getLogosPerView() {
+        const width = window.innerWidth;
+        // Desktop-da 6 loqo görünür (hər sətirdə)
+        if (width > 1400) return 6;
+        if (width > 1200) return 5;
+        if (width > 900) return 4;
+        if (width > 600) return 3;
+        return 2;
+    }
+
+ function updatePartnersSlider(rowIndex) {
+    if (!partnersRows[rowIndex]) return;
+    
+    const track = partnersRows[rowIndex];
+    const firstLogo = track.querySelector('.partner-logo');
+    if (!firstLogo) return;
+    
+    // Loqonun enini və aradakı boşluğu (gap) brauzerdən real vaxtda götürürük
+    const style = window.getComputedStyle(track);
+    const gap = parseFloat(style.gap) || 0;
+    const logoWidth = firstLogo.offsetWidth;
+    
+    const logosPerView = getLogosPerView();
+    const totalLogos = track.querySelectorAll('.partner-logo').length;
+    const maxIndex = Math.max(0, totalLogos - logosPerView);
+    
+    currentPartnerIndex[rowIndex] = Math.min(Math.max(0, currentPartnerIndex[rowIndex]), maxIndex);
+    
+    // Hesablama avtomatikləşdi
+    const translateX = -currentPartnerIndex[rowIndex] * (logoWidth + gap);
+    track.style.transform = `translateX(${translateX}px)`;
+}
+
+    function updateAllRows() {
+        partnersRows.forEach((row, index) => {
+            updatePartnersSlider(index);
+        });
+    }
+
+    function showNextPartners() {
+        const logosPerView = getLogosPerView();
+        partnersRows.forEach((row, rowIndex) => {
+            const logosInRow = row.querySelectorAll('.partner-logo');
+            const totalLogos = logosInRow.length;
+            const maxIndex = Math.max(0, totalLogos - logosPerView);
+            currentPartnerIndex[rowIndex] = Math.min(currentPartnerIndex[rowIndex] + 1, maxIndex);
+            updatePartnersSlider(rowIndex);
+        });
+    }
+
+    function showPrevPartners() {
+        partnersRows.forEach((row, rowIndex) => {
+            currentPartnerIndex[rowIndex] = Math.max(0, currentPartnerIndex[rowIndex] - 1);
+            updatePartnersSlider(rowIndex);
+        });
+    }
+
+    if (partnersNext) {
+        partnersNext.addEventListener('click', showNextPartners);
+    }
+
+    if (partnersPrev) {
+        partnersPrev.addEventListener('click', showPrevPartners);
+    }
+
+    // Responsive update
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            updateAllRows();
+        }, 250);
+    });
+
+    // Initialize after page load
+    if (partnersRows.length > 0) {
+        window.addEventListener('load', () => {
+            setTimeout(updateAllRows, 100);
+        });
+        updateAllRows();
+    }
 });

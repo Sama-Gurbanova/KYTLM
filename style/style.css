@@ -628,3 +628,140 @@
     opacity: 1;
     z-index: 2;
 }
+
+/* PARTNERS SECTION (Tərəfdaşlarımız slideri) */
+.partners-section {
+   padding: 100px 0;
+    width: 100%;
+}
+
+.partners-section .container {
+    width: 95%;
+    max-width: 1750px; /* Slider-in genişliyinə uyğunlaşdırıldı */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.partners-header {
+   display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 1700px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.partners-title {
+    color: #1D9F6F;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.partners-arrows {
+    display: flex;
+    gap: 10px;
+}
+
+.partners-arrows button {
+    background: transparent;
+    border: 1px solid rgba(0,0,0,0.1);
+    color: #222;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 18px;
+    display: flex;
+    align-items: right;
+    justify-content: center;
+}
+
+.partners-arrows button:hover {
+    background: #1D9F6F;
+    color: #fff;
+    border-color: #1D9F6F;
+}
+
+.partners-slider {
+    width: 95% !important; /* Kənarlardakı boşluğu minimuma endiririk */
+    max-width: 1750px !important; 
+    margin: 0 auto;
+}
+
+.partners-row {
+    position: relative;
+    width: 100%;
+    height: 255px; /* (520px - 10px gap) / 2 = 255px per row */
+    overflow: hidden;
+}
+
+.partners-track {
+    display: flex;
+    gap: 20px; /* Çərçivələr arası məsafə */
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+    width: fit-content;
+    height: 100%;
+    align-items: center;
+}
+
+.partner-logo {
+   flex: 0 0 260px; /* Loqo qutularını böyüdürük */
+    height: 180px; 
+    background: #f9f9f9; /* Figmadakı o yüngül boz fon */
+    border-radius: 8px; /* Künclərin yüngül qövsvari olması */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.partner-logo:hover {
+    border-color: #1D9F6F;
+    box-shadow: 0 4px 12px rgba(29, 159, 111, 0.1);
+    transform: translateY(-5px);
+}
+
+.partner-logo img {
+    max-width: 75%; /* Loqolar qutunun içində daha dolğun görünsün */
+}
+
+.partner-logo:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* Responsive design for partners */
+@media (max-width: 1400px) {
+    .partner-logo {
+        flex: 0 0 200px; /* Bütün ekranlarda eyni qalacaqsa, bir dəfə bəsdir */
+        height: 180px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .partner-logo {
+        width: 200px;
+        height: 200px;
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 900px) {
+    .partner-logo {
+        width: 200px;
+        height: 200px;
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 600px) {
+    .partner-logo {
+        width: 200px;
+        height: 200px;
+        min-width: 200px;
+    }
+}

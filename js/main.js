@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const dropdownTrigger = document.querySelector('.dropdown-trigger');
     const dropdownParent = document.querySelector('.dropdown');
 
+    
     if(dropdownTrigger) {
         dropdownTrigger.addEventListener('click', function(e) {
             e.preventDefault();
@@ -263,8 +264,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function getMediaPerView() {
         const width = window.innerWidth;
-        if (width > 1400) return 3;
-        if (width > 900) return 2;
+        // Desktop
+        if (width >= 1400) return 3;
+        // Tablet (o cümlədən 768px ətrafı) – 2 kart yan‑yana
+        if (width >= 768) return 2;
+        // Mobil – 1 kart
         return 1;
     }
 
@@ -324,5 +328,22 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(updateMediaSlider, 100);
         });
         updateMediaSlider();
+    }
+
+    // Mobile Menu Toggle (360px)
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (mobileMenuToggle && navLinks) {
+        mobileMenuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!mobileMenuToggle.contains(event.target) && !navLinks.contains(event.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
     }
 });

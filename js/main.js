@@ -346,4 +346,194 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Search Funksionallığı
+    const searchBox = document.getElementById('searchBox');
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchExpanded = document.getElementById('searchExpanded');
+    const searchInput = document.getElementById('searchInput');
+    const searchClose = document.getElementById('searchClose');
+    const searchIcon = searchBox ? searchBox.querySelector('.search-icon') : null;
+    let searchResults = null;
+
+    // Search results container yarat
+    function createSearchResults() {
+        if (!searchResults && searchExpanded) {
+            searchResults = document.createElement('div');
+            searchResults.className = 'search-results';
+            searchExpanded.appendChild(searchResults);
+        }
+        return searchResults;
+    }
+
+    // Search box-u aç/bağla
+    if (searchBox && searchOverlay && searchExpanded) {
+        // Search icon-a kliklədikdə
+        if (searchIcon) {
+            searchIcon.addEventListener('click', function(e) {
+                e.stopPropagation();
+                openSearch();
+            });
+        }
+
+        // Search box-a kliklədikdə (icon olmasa belə)
+        searchBox.addEventListener('click', function(e) {
+            if (e.target === searchBox || e.target.closest('.search-box')) {
+                e.stopPropagation();
+                openSearch();
+            }
+        });
+
+        // Overlay-ə kliklədikdə bağlamaq
+        if (searchOverlay) {
+            searchOverlay.addEventListener('click', function(e) {
+                if (e.target === searchOverlay) {
+                    closeSearch();
+                }
+            });
+        }
+
+        // Close button-a kliklədikdə
+        if (searchClose) {
+            searchClose.addEventListener('click', function(e) {
+                e.stopPropagation();
+                closeSearch();
+            });
+        }
+
+        // ESC düyməsi ilə bağlamaq
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
+                closeSearch();
+            }
+        });
+    }
+
+    function openSearch() {
+        if (searchOverlay && !searchOverlay.classList.contains('active')) {
+            searchOverlay.classList.add('active');
+            if (searchBox) {
+                searchBox.classList.add('active');
+            }
+            setTimeout(() => {
+                if (searchInput) searchInput.focus();
+            }, 100);
+            // Body scroll-u blokla
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeSearch() {
+        if (searchOverlay) {
+            searchOverlay.classList.remove('active');
+            if (searchBox) {
+                searchBox.classList.remove('active');
+            }
+            if (searchInput) {
+                searchInput.value = '';
+            }
+            if (searchResults) {
+                searchResults.classList.remove('active');
+                searchResults.innerHTML = '';
+            }
+            // Body scroll-u aktivləşdir
+            document.body.style.overflow = '';
+        }
+    }
+
+    // Axtarış funksiyası
+    if (searchInput) {
+        let searchTimeout;
+        
+        searchInput.addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            const query = this.value.trim();
+            
+            if (query.length < 2) {
+                if (searchResults) {
+                    searchResults.classList.remove('active');
+                    searchResults.innerHTML = '';
+                }
+                return;
+            }
+
+            searchTimeout = setTimeout(() => {
+                performSearch(query);
+            }, 300);
+        });
+
+        // Enter düyməsi ilə axtarış
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const query = this.value.trim();
+                if (query.length >= 2) {
+                    performSearch(query);
+                }
+            }
+        });
+    }
+
+    function performSearch(query) {
+        const results = [];
+        const searchableElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, .service-title, .media-heading, .project-caption');
+        
+        searchableElements.forEach(element => {
+            const text = element.textContent.toLowerCase();
+            if (text.includes(query.toLowerCase())) {
+                const fullText = element.textContent;
+                const highlightedText = highlightText(fullText, query);
+                
+                results.push({
+                    text: fullText,
+                    highlighted: highlightedText,
+                    element: element
+                });
+            }
+        });
+
+        displaySearchResults(results, query);
+    }
+
+    function highlightText(text, query) {
+        const regex = new RegExp(`(${query})`, 'gi');
+        return text.replace(regex, '<span class="search-highlight">$1</span>');
+    }
+
+    function displaySearchResults(results, query) {
+        const resultsContainer = createSearchResults();
+        
+        if (results.length === 0) {
+            resultsContainer.innerHTML = `
+                <div class="search-result-item">
+                    <div class="search-result-text">Nəticə tapılmadı</div>
+                </div>
+            `;
+        } else {
+            resultsContainer.innerHTML = results.slice(0, 10).map(result => {
+                const title = result.text.length > 60 ? result.text.substring(0, 60) + '...' : result.text;
+                return `
+                    <div class="search-result-item" data-target="${result.element.tagName.toLowerCase()}">
+                        <div class="search-result-title">${result.highlighted}</div>
+                    </div>
+                `;
+            }).join('');
+
+            // Nəticələrə kliklədikdə scroll et
+            resultsContainer.querySelectorAll('.search-result-item').forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    const targetElement = results[index].element;
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    targetElement.style.transition = 'background 0.3s';
+                    targetElement.style.background = 'rgba(0, 169, 145, 0.2)';
+                    setTimeout(() => {
+                        targetElement.style.background = '';
+                    }, 2000);
+                    closeSearch();
+                });
+            });
+        }
+
+        resultsContainer.classList.add('active');
+    }
 });

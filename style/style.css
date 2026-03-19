@@ -99,8 +99,293 @@ html, body {
     display: flex; align-items: center; justify-content: center;
     color: white; font-size: 13px; cursor: pointer;
     transition: 0.3s;
+    position: relative;
 }
 .header-box:hover { background: rgba(255,255,255,0.1); }
+
+/* Search Box Funksionallığı */
+.search-box {
+    position: relative;
+    overflow: visible;
+}
+
+.search-icon {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+/* Search Overlay - Arxa fon bulanıqlığı */
+.search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 0;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.search-overlay.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Genişlənən axtarış paneli */
+.search-expanded {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    padding: 0 40px 0 40px;
+    height: 80px;
+    z-index: 10000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    gap: 15px;
+    animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    top: 0;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.search-box.active .search-icon {
+    opacity: 0.5;
+}
+
+.search-icon-inside {
+    flex-shrink: 0;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    width: 20px;
+    height: 20px;
+    stroke: #333;
+}
+
+.search-expanded input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #333;
+    font-size: 18px;
+    flex: 1;
+    padding: 0;
+    min-width: 0;
+    font-family: inherit;
+    font-weight: 400;
+}
+
+.search-expanded input::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.search-expanded:focus-within {
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.search-expanded:focus-within .search-icon-inside {
+    opacity: 0.8;
+    stroke: #000;
+}
+
+.search-close {
+    background: none;
+    border: none;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 28px;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+
+.search-close:hover {
+    color: #00A991;
+    background: rgba(0, 0, 0, 0.05);
+    transform: scale(1.1);
+}
+
+/* Nəticələr Paneli */
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: none;
+    z-index: 10001;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeInDown 0.2s ease-out;
+}
+
+.search-results.active {
+    display: block;
+}
+
+.search-result-item {
+    padding: 14px 40px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.search-result-item:hover {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-title {
+    color: #333;
+    font-size: 15px;
+    font-weight: 400;
+    margin-bottom: 4px;
+    line-height: 1.5;
+}
+
+.search-result-text {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.search-highlight {
+    background: rgba(0, 169, 145, 0.15);
+    color: #00A991;
+    font-weight: 500;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scrollbar styling for search results */
+.search-results::-webkit-scrollbar {
+    width: 6px;
+}
+
+.search-results::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.search-results::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.search-results::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive Search Styles */
+@media (max-width: 768px) {
+    .search-overlay {
+        padding-top: 0;
+    }
+    
+    .search-expanded {
+        padding: 0 30px 0 30px;
+        height: 70px;
+    }
+    
+    .search-expanded input {
+        font-size: 16px;
+    }
+    
+    .search-result-item {
+        padding: 12px 30px;
+    }
+    
+    .search-results {
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-overlay {
+        padding-top: 0;
+    }
+    
+    .search-expanded {
+        padding: 0 20px 0 20px;
+        height: 60px;
+    }
+    
+    .search-expanded input {
+        font-size: 15px;
+    }
+    
+    .search-icon-inside {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .search-close {
+        width: 28px;
+        height: 28px;
+        font-size: 24px;
+    }
+    
+    .search-result-item {
+        padding: 12px 20px;
+    }
+}
 
 .lang-wrapper { position: relative; }
 .dropdown-content {
@@ -1222,6 +1507,12 @@ html, body {
 
     .header-right {
         display: none !important;/* AZ və Search gizlədilir */
+    }
+
+    /* Search box mobil üçün */
+    .search-expanded {
+        min-width: 250px !important;
+        max-width: calc(100vw - 40px) !important;
     }
 
     /* HERO SECTION-Şəklin tam görünməsi */

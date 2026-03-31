@@ -130,6 +130,65 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     });
 
+    // About bölməsi üçün sayğac animasiyası
+    const aboutSection = document.querySelector('.about-section');
+    const statNumbers = document.querySelectorAll('.about-section .stat-number');
+
+    function animateStatNumber(element, duration = 1400) {
+        const originalText = element.dataset.targetValue || element.textContent.trim();
+        const hasPlus = originalText.endsWith('+');
+        const targetValue = parseInt(originalText.replace(/\D/g, ''), 10);
+
+        if (Number.isNaN(targetValue)) return;
+
+        const startTime = performance.now();
+
+        function update(currentTime) {
+            const progress = Math.min((currentTime - startTime) / duration, 1);
+            const easedProgress = 1 - Math.pow(1 - progress, 3);
+            const currentValue = Math.floor(targetValue * easedProgress);
+
+            element.textContent = hasPlus ? `${currentValue}+` : `${currentValue}`;
+
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                element.textContent = hasPlus ? `${targetValue}+` : `${targetValue}`;
+            }
+        }
+
+        requestAnimationFrame(update);
+    }
+
+    if (aboutSection && statNumbers.length > 0) {
+        statNumbers.forEach(stat => {
+            stat.dataset.targetValue = stat.textContent.trim();
+        });
+
+        let hasAnimatedInView = false;
+
+        const statsObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (!hasAnimatedInView) {
+                        statNumbers.forEach(stat => {
+                            const targetText = stat.dataset.targetValue || '0';
+                            stat.textContent = targetText.endsWith('+') ? '0+' : '0';
+                            animateStatNumber(stat);
+                        });
+                        hasAnimatedInView = true;
+                    }
+                } else {
+                    hasAnimatedInView = false;
+                }
+            });
+        }, {
+            threshold: 0.35
+        });
+
+        statsObserver.observe(aboutSection);
+    }
+
     // Layihələr Slideri
     const projectSlides = document.querySelectorAll('.project-slide');
     const projectsPrev = document.querySelector('.projects-prev');

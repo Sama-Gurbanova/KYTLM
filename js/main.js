@@ -392,16 +392,49 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile Menu Toggle (360px)
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navLinks = document.querySelector('.nav-links');
+    const navbar = document.querySelector('.navbar');
     
     if (mobileMenuToggle && navLinks) {
+        function setMobileMenuState(isOpen) {
+            navLinks.classList.toggle('active', isOpen);
+            if (navbar) {
+                navbar.classList.toggle('menu-open', isOpen);
+            }
+            mobileMenuToggle.textContent = isOpen ? '✕' : '☰';
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        }
+
         mobileMenuToggle.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
+            const willOpen = !navLinks.classList.contains('active');
+            setMobileMenuState(willOpen);
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
             if (!mobileMenuToggle.contains(event.target) && !navLinks.contains(event.target)) {
-                navLinks.classList.remove('active');
+                setMobileMenuState(false);
+            }
+        });
+
+        // Mobil menyuda link davranışı:
+        // - Dropdown trigger-ə klikləyəndə menyu bağlanmasın (alt menyu açılsın)
+        // - Alt maddəyə və ya adi linkə klikləyəndə menyu bağlansın
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', event => {
+                if (window.innerWidth <= 360) {
+                    const isDropdownTrigger = link.classList.contains('dropdown-trigger');
+                    if (isDropdownTrigger) {
+                        event.preventDefault();
+                        return;
+                    }
+                    setMobileMenuState(false);
+                }
+            });
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 360 && navLinks.classList.contains('active')) {
+                setMobileMenuState(false);
             }
         });
     }

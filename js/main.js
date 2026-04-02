@@ -603,7 +603,6 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         } else {
             resultsContainer.innerHTML = results.slice(0, 10).map(result => {
-                const title = result.text.length > 60 ? result.text.substring(0, 60) + '...' : result.text;
                 return `
                     <div class="search-result-item" data-target="${result.element.tagName.toLowerCase()}">
                         <div class="search-result-title">${result.highlighted}</div>

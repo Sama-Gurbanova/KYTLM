@@ -2487,13 +2487,13 @@ html, body {
 /* Internal page (Teskilat haqqinda) */
 body.internal-page .navbar {
     position: relative;
-    background: #fff;
-    padding: 16px 0;
+    background: #f4f4f4;
+    padding: 18px 0;
 }
 
 body.internal-page .navbar .container {
-    border-bottom: 1px solid #ececec;
-    padding-bottom: 14px;
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 body.internal-page .logo-text {
@@ -2514,6 +2514,23 @@ body.internal-page .search-icon {
     stroke: #8a8a8a;
 }
 
+body.internal-page .teskilat-header-brand {
+    display: block;
+    width: 208px;
+    height: 48px;
+    object-fit: contain;
+    object-position: left center;
+}
+
+body.internal-page .logo > a,
+body.internal-page .logo-text {
+    display: none;
+}
+
+body.internal-page .logo {
+    min-width: 208px;
+}
+
 .organization-page {
     background: #fff;
     padding: 10px 0 70px;
@@ -2521,19 +2538,30 @@ body.internal-page .search-icon {
 
 .organization-breadcrumb {
     justify-content: flex-start;
-    gap: 8px;
-    font-size: 12px;
-    color: #8f8f8f;
-    margin: 8px auto 24px;
+    gap: 12px;
+    font-size: 16px;
+    color: #8a9599;
+    margin: 14px auto 38px;
 }
 
 .organization-breadcrumb a {
     text-decoration: none;
-    color: #8f8f8f;
+    color: #8a9599;
 }
 
 .organization-breadcrumb a:hover {
     color: #00a991;
+}
+
+.organization-breadcrumb span:last-child {
+    color: #1d9f6f;
+}
+
+.organization-breadcrumb span:nth-child(2) {
+    color: #9aa3a7;
+    font-size: 11px;
+    line-height: 1;
+    transform: translateY(1px);
 }
 
 .organization-intro {
@@ -2548,8 +2576,10 @@ body.internal-page .search-icon {
 
 .organization-text h1 {
     color: #1f4f42;
-    font-size: 52px;
-    margin-bottom: 24px;
+    font-size: 80px;
+    line-height: 1.06;
+    font-weight: 700;
+    margin-bottom: 34px;
 }
 
 .organization-text p {
@@ -2621,5 +2651,621 @@ body.internal-page .search-icon {
         min-width: 50%;
         border-right: 1px solid #e5e5e5;
         border-bottom: 1px solid #e5e5e5;
+    }
+}
+
+@media (max-width: 768px) {
+    body.internal-page .navbar {
+        padding: 12px 0 0;
+    }
+
+    body.internal-page .navbar .container {
+        width: calc(100% - 32px) !important;
+        margin: 0 auto;
+        padding: 0 0 8px !important;
+    }
+
+    body.internal-page .logo {
+        width: 100%;
+        gap: 8px;
+        position: relative;
+    }
+
+    body.internal-page .logo > a,
+    body.internal-page .logo-text {
+        display: none !important;
+    }
+
+    body.internal-page .teskilat-header-brand {
+        display: block;
+        width: 370px;
+        max-width: calc(100% - 44px);
+        height: 52px;
+        object-fit: contain;
+        object-position: left center;
+        filter: contrast(1.25);
+        opacity: 1;
+    }
+
+    body.internal-page .logo img {
+        width: 30px;
+        height: 30px;
+    }
+
+    body.internal-page .logo-text b {
+        font-size: 9px !important;
+        line-height: 1.2;
+    }
+
+    body.internal-page .logo-text small {
+        font-size: 7px !important;
+    }
+
+    body.internal-page nav {
+        display: block !important;
+    }
+
+    body.internal-page .header-right {
+        display: none !important;
+    }
+
+    body.internal-page .mobile-menu-toggle {
+        display: block !important;
+        margin-left: auto !important;
+        position: absolute !important;
+        right: 0 !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        color: #676767 !important;
+        font-size: 24px !important;
+        line-height: 1;
+    }
+
+    body.internal-page .nav-links {
+        display: none !important;
+    }
+
+    body.internal-page .nav-links.active {
+        display: flex !important;
+        flex-direction: column;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: #f4f4f4 !important;
+        padding: 86px 10px 74px !important;
+        z-index: 2000 !important;
+        gap: 0 !important;
+        overflow-y: auto !important;
+    }
+
+    body.internal-page .navbar.menu-open .container {
+        position: fixed !important;
+        top: 12px !important;
+        left: 16px !important;
+        width: calc(100% - 32px) !important;
+        margin: 0 !important;
+        padding: 0 0 10px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.35) !important;
+        background: #747460 !important;
+        z-index: 2003 !important;
+    }
+
+    body.internal-page .nav-links.active li {
+        width: 100%;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    body.internal-page .nav-links.active a {
+        color: #1f4f42 !important;
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        padding: 10px 0 !important;
+    }
+
+    body.internal-page .nav-links.active .dropdown-menu {
+        position: static !important;
+        display: none;
+        background: transparent !important;
+        box-shadow: none !important;
+        min-width: auto !important;
+        padding: 4px 0 8px !important;
+    }
+
+    body.internal-page .nav-links.active .dropdown.open .dropdown-menu {
+        display: block !important;
+    }
+
+    body.internal-page .nav-links.active .dropdown-menu a {
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        color: #6f7e78 !important;
+        border-left: none !important;
+        padding: 6px 0 !important;
+    }
+
+    body.internal-page .navbar.menu-open .header-right {
+        display: flex !important;
+        position: fixed !important;
+        left: 50% !important;
+        bottom: 16px !important;
+        transform: translateX(-50%) !important;
+        z-index: 2002 !important;
+        gap: 10px !important;
+    }
+
+    body.internal-page .navbar.menu-open .header-box {
+        display: flex !important;
+        width: 34px !important;
+        height: 34px !important;
+        border: 1px solid #d9d9d9 !important;
+        color: #666 !important;
+        background: #f4f4f4 !important;
+        font-size: 14px !important;
+    }
+
+    body.internal-page .navbar.menu-open .dropdown-content {
+        display: none !important;
+    }
+
+    body.internal-page .navbar.menu-open .search-box .search-icon {
+        stroke: #7b7b7b !important;
+    }
+
+    body.internal-page .search-overlay.active {
+        display: flex !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: #f4f4f4 !important;
+        backdrop-filter: none !important;
+        z-index: 3000 !important;
+        overflow-y: auto !important;
+    }
+
+    body.internal-page .search-expanded {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 56px !important;
+        background: #f4f4f4 !important;
+        box-shadow: none !important;
+        border-bottom: 1px solid #d9d9d9 !important;
+        padding: 12px 10px !important;
+        z-index: 3001 !important;
+    }
+
+    body.internal-page .search-expanded input {
+        font-size: 13px !important;
+    }
+
+    body.internal-page .search-close {
+        width: auto !important;
+        height: auto !important;
+        font-size: 13px !important;
+        color: #676767 !important;
+        border-radius: 0 !important;
+    }
+
+    body.internal-page .search-results {
+        position: static !important;
+        width: 100% !important;
+        max-height: none !important;
+        background: #f4f4f4 !important;
+        border-top: none !important;
+        box-shadow: none !important;
+        z-index: 3002 !important;
+    }
+
+    .organization-page {
+        padding: 8px 0 45px;
+    }
+
+    .organization-breadcrumb {
+        width: calc(100% - 32px) !important;
+        margin: 8px auto 14px;
+        font-size: 10px;
+    }
+
+    .organization-intro {
+        width: calc(100% - 32px) !important;
+        margin: 0 auto 22px;
+        gap: 16px;
+        flex-direction: column;
+    }
+
+    .organization-text h1 {
+        font-size: 32px;
+        margin-bottom: 12px;
+    }
+
+    .organization-text p {
+        font-size: 12px;
+        line-height: 1.55;
+        margin-bottom: 12px;
+    }
+
+    .organization-image img {
+        max-width: 100%;
+    }
+
+    .organization-values {
+        width: calc(100% - 32px) !important;
+        margin: 0 auto;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        border: 1px solid #e5e5e5;
+    }
+
+    .organization-value-card {
+        min-width: 0;
+        border-right: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+        padding: 14px 12px;
+    }
+
+    .organization-value-card:nth-child(2n) {
+        border-right: none;
+    }
+
+    .organization-value-card:nth-last-child(-n+2) {
+        border-bottom: none;
+    }
+
+    .organization-value-card img {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 8px;
+    }
+
+    .organization-value-card h3 {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+
+    .organization-value-card p {
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    /* 768: search full-screen format (320 ile eyni mentiq) */
+    body.internal-page.search-open .navbar.menu-open .header-right {
+        left: 0 !important;
+        bottom: auto !important;
+        width: 100% !important;
+        transform: none !important;
+        justify-content: flex-start !important;
+        gap: 0 !important;
+        z-index: 4001 !important;
+    }
+
+    body.internal-page.search-open .navbar.menu-open .lang-wrapper,
+    body.internal-page.search-open .navbar.menu-open .search-box {
+        display: none !important;
+    }
+
+    body.internal-page .search-overlay.active {
+        display: block !important;
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: #f4f4f4 !important;
+        z-index: 4000 !important;
+        overflow-y: auto !important;
+    }
+
+    body.internal-page .search-expanded {
+        width: 100% !important;
+        min-height: 56px !important;
+        padding: 12px 16px !important;
+        border-bottom: 1px solid #cfcfcf !important;
+        background: #f4f4f4 !important;
+        box-shadow: none !important;
+    }
+
+    body.internal-page .search-expanded input {
+        font-size: 14px !important;
+    }
+
+    body.internal-page .search-close {
+        font-size: 14px !important;
+        color: #6f6f6f !important;
+        border-left: 1px solid #d6d6d6 !important;
+        margin-left: 8px !important;
+        padding-left: 12px !important;
+        border-radius: 0 !important;
+    }
+
+    body.internal-page .search-results {
+        position: static !important;
+        width: 100% !important;
+        max-height: none !important;
+        padding: 10px 16px 24px !important;
+        background: #f4f4f4 !important;
+        border-top: none !important;
+        box-shadow: none !important;
+    }
+}
+
+@media (max-width: 320px) {
+    body.internal-page .nav-links.active {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        min-height: 100vh !important;
+        max-height: 100vh !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    body.internal-page .navbar {
+        padding: 8px 0 0;
+    }
+
+    body.internal-page .navbar .container {
+        width: calc(100% - 20px) !important;
+        padding: 0 0 6px !important;
+    }
+
+    body.internal-page .logo {
+        gap: 6px;
+        width: 100%;
+        position: relative;
+    }
+
+    body.internal-page .teskilat-header-brand {
+        width: 250px;
+        max-width: calc(100% - 36px);
+        height: 42px;
+        object-fit: contain;
+        object-position: left center;
+        filter: contrast(1.25);
+        opacity: 1;
+    }
+
+    body.internal-page .logo > a,
+    body.internal-page .logo-text {
+        display: none !important;
+    }
+
+    body.internal-page .logo-text b {
+        font-size: 7px !important;
+    }
+
+    body.internal-page .logo-text small {
+        font-size: 6px !important;
+    }
+
+    /* Menu panelde logo hissesi yuxarida sabit gorunsun */
+    body.internal-page .navbar.menu-open .container {
+        position: fixed !important;
+        top: 8px !important;
+        left: 10px !important;
+        width: calc(100% - 20px) !important;
+        margin: 0 !important;
+        padding: 8px 0 8px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.35) !important;
+        background: #747460 !important;
+        z-index: 3003 !important;
+    }
+
+    body.internal-page .navbar.menu-open .logo-text {
+        color: #4a4a4a !important;
+    }
+
+    body.internal-page .navbar.menu-open .mobile-menu-toggle {
+        color: #4a4a4a !important;
+    }
+
+    .organization-page {
+        padding: 6px 0 30px;
+    }
+
+    .organization-breadcrumb {
+        width: calc(100% - 20px) !important;
+        margin: 6px auto 10px;
+        font-size: 9px;
+        gap: 5px;
+    }
+
+    .organization-intro {
+        width: calc(100% - 20px) !important;
+        margin: 0 auto 14px;
+        gap: 12px;
+    }
+
+    .organization-text h1 {
+        font-size: 26px;
+        margin-bottom: 8px;
+    }
+
+    .organization-text p {
+        font-size: 11px;
+        line-height: 1.45;
+        margin-bottom: 10px;
+    }
+
+    .organization-values {
+        width: calc(100% - 20px) !important;
+        grid-template-columns: 1fr;
+    }
+
+    .organization-value-card {
+        padding: 12px 10px;
+        border-right: none !important;
+        border-bottom: 1px solid #e5e5e5 !important;
+    }
+
+    .organization-value-card:last-child {
+        border-bottom: none !important;
+    }
+
+    .organization-value-card img {
+        width: 20px;
+        height: 20px;
+        margin-bottom: 6px;
+    }
+
+    .organization-value-card h3 {
+        font-size: 20px;
+        margin-bottom: 6px;
+    }
+
+    .organization-value-card p {
+        font-size: 10px;
+        line-height: 1.4;
+    }
+
+    .main-footer {
+        padding-top: 30px !important;
+    }
+
+    .footer-wrapper {
+        gap: 24px !important;
+        padding: 0 10px !important;
+    }
+
+    .footer-contact-form h2,
+    .highlight-text {
+        font-size: 16px !important;
+    }
+
+    .f-input,
+    .f-submit {
+        font-size: 12px !important;
+    }
+
+    /* 320 menu tam ekrani tutsun, amma ustde logo ucun yer saxlasin */
+    body.internal-page .nav-links.active {
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        padding: 86px 10px 74px !important;
+        background: #f4f4f4 !important;
+        z-index: 3000 !important;
+    }
+
+    /* AZ + Search alt hissesinde qutu seklinde gorunsun */
+    body.internal-page .navbar.menu-open .header-right {
+        display: flex !important;
+        position: fixed !important;
+        left: 50% !important;
+        bottom: 16px !important;
+        transform: translateX(-50%) !important;
+        z-index: 3004 !important;
+        gap: 10px !important;
+    }
+
+    body.internal-page .navbar.menu-open .lang-wrapper {
+        display: block !important;
+    }
+
+    body.internal-page .navbar.menu-open .header-box {
+        display: flex !important;
+        width: 34px !important;
+        height: 34px !important;
+        border: 1px solid #d9d9d9 !important;
+        color: #666 !important;
+        background: #f4f4f4 !important;
+        font-size: 14px !important;
+    }
+
+    body.internal-page .navbar.menu-open .search-box .search-icon {
+        stroke: #7b7b7b !important;
+    }
+
+    /* Menu aciq olarken search input panelinin oz-ozune gorunmesinin qarsisini al */
+    body.internal-page .navbar.menu-open .search-overlay:not(.active) {
+        display: none !important;
+    }
+}
+
+/* 320 search final look (as approved screenshot) */
+@media (max-width: 320px) {
+    body.internal-page.search-open .navbar.menu-open .header-right {
+        left: 0 !important;
+        bottom: auto !important;
+        width: 100% !important;
+        transform: none !important;
+        justify-content: flex-start !important;
+        gap: 0 !important;
+        z-index: 4001 !important;
+    }
+
+    body.internal-page.search-open .navbar.menu-open .lang-wrapper {
+        display: none !important;
+    }
+
+    body.internal-page.search-open .navbar.menu-open .search-box {
+        display: none !important;
+    }
+
+    body.internal-page .search-overlay.active {
+        display: block !important;
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: #f4f4f4 !important;
+        z-index: 4000 !important;
+        overflow-y: auto !important;
+    }
+
+    body.internal-page .search-expanded {
+        width: 100% !important;
+        min-height: 52px !important;
+        padding: 10px 12px !important;
+        border-bottom: 1px solid #cfcfcf !important;
+        background: #f4f4f4 !important;
+        box-shadow: none !important;
+        gap: 8px !important;
+    }
+
+    body.internal-page .search-icon-inside {
+        width: 16px !important;
+        height: 16px !important;
+        stroke: #878787 !important;
+    }
+
+    body.internal-page .search-expanded input {
+        font-size: 12px !important;
+        color: #1f1f1f !important;
+    }
+
+    body.internal-page .search-close {
+        font-size: 13px !important;
+        color: #6f6f6f !important;
+        border-left: 1px solid #d6d6d6 !important;
+        margin-left: 6px !important;
+        padding-left: 10px !important;
+        border-radius: 0 !important;
+    }
+
+    body.internal-page .search-results {
+        position: static !important;
+        width: 100% !important;
+        max-height: none !important;
+        padding: 8px 12px 20px !important;
+        background: #f4f4f4 !important;
+        box-shadow: none !important;
+        border-top: none !important;
+    }
+
+    body.internal-page .search-result-item {
+        padding: 8px 4px !important;
+        border-bottom: none !important;
+    }
+
+    body.internal-page .search-result-title {
+        font-size: 16px !important;
+        line-height: 1.45 !important;
+        color: #16202a !important;
     }
 }

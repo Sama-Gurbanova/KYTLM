@@ -504,6 +504,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function openSearch() {
         if (searchOverlay && !searchOverlay.classList.contains('active')) {
             searchOverlay.classList.add('active');
+            document.body.classList.add('search-open');
             if (searchBox) {
                 searchBox.classList.add('active');
             }
@@ -518,6 +519,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function closeSearch() {
         if (searchOverlay) {
             searchOverlay.classList.remove('active');
+            document.body.classList.remove('search-open');
             if (searchBox) {
                 searchBox.classList.remove('active');
             }

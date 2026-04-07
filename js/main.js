@@ -1,29 +1,42 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Dropdown Menyu İdarəetməsi
-    const dropdownTrigger = document.querySelector('.dropdown-trigger');
-    const dropdownParent = document.querySelector('.dropdown');
+    // Dropdown Menyu İdarəetməsi (Haqqımızda, Media və s.)
+    const dropdownParents = document.querySelectorAll('.dropdown');
+    const dropdownTriggers = document.querySelectorAll('.dropdown .dropdown-trigger');
 
-    
-    if(dropdownTrigger) {
-        dropdownTrigger.addEventListener('click', function(e) {
+    dropdownTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function(e) {
             e.preventDefault();
-            dropdownParent.classList.toggle('open');
-            
-            const arrow = this.querySelector('.arrow-icon');
-            if(arrow) {
-                arrow.textContent = dropdownParent.classList.contains('open') ? '▴' : '▾';
+            const currentDropdown = this.closest('.dropdown');
+            if (!currentDropdown) return;
+
+            const willOpen = !currentDropdown.classList.contains('open');
+
+            // Digər açıq dropdown-ları bağla
+            dropdownParents.forEach(dropdown => {
+                dropdown.classList.remove('open');
+                const arrow = dropdown.querySelector('.dropdown-trigger .arrow-icon');
+                if (arrow) arrow.textContent = '▾';
+            });
+
+            // Cari dropdown-u aç/bağla
+            currentDropdown.classList.toggle('open', willOpen);
+            const currentArrow = this.querySelector('.arrow-icon');
+            if (currentArrow) {
+                currentArrow.textContent = willOpen ? '▴' : '▾';
             }
         });
-    }
+    });
 
-    // Kənara kliklədikdə bağlamaq
+    // Kənara kliklədikdə bütün dropdown-ları bağla
     window.addEventListener('click', function(e) {
-        if (dropdownParent && !dropdownParent.contains(e.target)) {
-            dropdownParent.classList.remove('open');
-            const arrow = dropdownTrigger.querySelector('.arrow-icon');
-            if(arrow) arrow.textContent = '▾';
-        }
+        dropdownParents.forEach(dropdown => {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('open');
+                const arrow = dropdown.querySelector('.dropdown-trigger .arrow-icon');
+                if (arrow) arrow.textContent = '▾';
+            }
+        });
     });
 
     // Hero Slider Funksionallığı
@@ -628,5 +641,59 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         resultsContainer.classList.add('active');
+    }
+
+    // News səhifəsi üçün pagination funksionallığı
+    const newsGrid = document.querySelector('.news-grid');
+    const newsCards = document.querySelectorAll('.news-grid .news-card');
+    const newsPagination = document.querySelector('.news-pagination');
+    const newsPageNumbers = document.querySelector('.news-page-numbers');
+    const newsPrevButton = document.querySelector('.news-page-prev');
+    const newsNextButton = document.querySelector('.news-page-next');
+
+    if (newsGrid && newsCards.length > 0 && newsPagination && newsPageNumbers && newsPrevButton && newsNextButton) {
+        let currentNewsPage = 1;
+        const totalPages = 4;
+        let isAnimating = false;
+
+        function renderNewsPage(page) {
+            if (isAnimating) return;
+            isAnimating = true;
+            currentNewsPage = Math.min(Math.max(1, page), totalPages);
+
+            newsGrid.classList.add('is-switching');
+
+            setTimeout(() => {
+                newsCards.forEach(card => {
+                    card.style.display = 'block';
+                });
+
+                newsPageNumbers.innerHTML = '';
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageButton = document.createElement('button');
+                    pageButton.textContent = String(i);
+                    if (i === currentNewsPage) {
+                        pageButton.classList.add('active');
+                    }
+                    pageButton.addEventListener('click', () => renderNewsPage(i));
+                    newsPageNumbers.appendChild(pageButton);
+                }
+
+                newsPrevButton.disabled = currentNewsPage === 1;
+                newsNextButton.disabled = currentNewsPage === totalPages;
+
+                requestAnimationFrame(() => {
+                    newsGrid.classList.remove('is-switching');
+                    setTimeout(() => {
+                        isAnimating = false;
+                    }, 300);
+                });
+            }, 120);
+        }
+
+        newsPrevButton.addEventListener('click', () => renderNewsPage(currentNewsPage - 1));
+        newsNextButton.addEventListener('click', () => renderNewsPage(currentNewsPage + 1));
+
+        renderNewsPage(1);
     }
 });

@@ -637,7 +637,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }, 2000);
                     closeSearch();
                 });
-            });
+            }); 
         }
 
         resultsContainer.classList.add('active');

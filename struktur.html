@@ -3,10 +3,10 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>KYLTM - Xəbərlər</title>
+   <title>KYLTM - Struktur</title>
    <link rel="stylesheet" href="/style/style.css">
 </head>
-<body class="news-page">
+<body class="news-page contact-page struktur-page">
 
 <header class="navbar">
     <div class="container">
@@ -17,7 +17,7 @@
                 <b>LAYİHƏ - TƏDQİQAT MƏRKƏZİ</b>
                 <small>MƏHDUD MƏSULİYYƏTLİ CƏMİYYƏT</small>
             </div>
-            <button class="mobile-menu-toggle" style="display: none; background: none; border: none; color: #333; font-size: 24px; cursor: pointer; margin-left: auto;">☰</button>
+            <button type="button" class="mobile-menu-toggle" aria-label="Menyunu aç">☰</button>
         </div>
         
         <nav>
@@ -33,12 +33,18 @@
                 </li>
                 <li><a href="#">Xidmətlər</a></li>
                 <li><a href="#">Layihələr</a></li>
-                <li><a href="news.html">Media <span class="arrow-icon">▾</span></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-trigger">Media <span class="arrow-icon">▾</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="news.html">Xəbərlər</a></li>
+                        <li><a href="elanlar.html">Elanlar</a></li>
+                    </ul>
+                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-trigger">Əlaqə <span class="arrow-icon">▾</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="elaqe-melumatlari.html">Əlaqə məlumatları</a></li>
-                        <li><a href="struktur.html">Struktur</a></li>
+                        <li class="active-item"><a href="struktur.html">Struktur</a></li>
                         <li><a href="faq.html">FAQ</a></li>
                     </ul>
                 </li>
@@ -74,85 +80,27 @@
     </div>
 </header>
 
-<main class="news-main">
+<main class="contact-main struktur-main">
     <div class="container news-breadcrumb">
         <a href="index.html">Ana səhifə</a>
         <span>›</span>
-        <span>Xəbərlər</span>
+        <span>Struktur</span>
     </div>
 
-    <section class="container news-section">
-        <h1 class="news-title">Xəbərlər</h1>
+    <section class="container struktur-intro">
+        <h1 class="struktur-title">Struktur</h1>
+    </section>
 
-        <div class="news-grid">
-            <article class="news-card">
-                <a href="news-article.html?i=1" class="news-card-link" aria-label="İpoteka krediti əldə edən zaman ən çox girov qoyulan əmlaklar — ətraflı"></a>
-                <img src="/style/assets/images/media1.png" alt="">
-                <span class="news-date">07 İyun 2024</span>
-                <h3>İpoteka krediti əldə edən zaman ən çox girov qoyulan əmlaklar</h3>
-            </article>
-
-            <article class="news-card">
-                <a href="news-article.html?i=2" class="news-card-link" aria-label="Texniki pasport dair plan və ölçü sənədlərin verilməsi elektronlaşdırılıb — ətraflı"></a>
-                <img src="/style/assets/images/media2.jpg" alt="">
-                <span class="news-date">02 İyun 2024</span>
-                <h3>Texniki pasport dair plan və ölçü sənədlərin verilməsi elektronlaşdırılıb</h3>
-            </article>
-
-            <article class="news-card">
-                <a href="news-article.html?i=3" class="news-card-link" aria-label="Texniki pasport dair plan və ölçü sənədlərin verilməsi elektronlaşdırılıb — ətraflı"></a>
-                <img src="/style/assets/images/media6.jpg" alt="">
-                <span class="news-date">25 May 2024</span>
-                <h3>Texniki pasport dair plan və ölçü sənədlərin verilməsi elektronlaşdırılıb</h3>
-            </article>
-
-            <article class="news-card">
-                <a href="news-article.html?i=4" class="news-card-link" aria-label="Texniki pasport dair plan və ölçü sənədlərin verilməsi elektronlaşdırılıb — ətraflı"></a>
-                <img src="/style/assets/images/media6.jpg" alt="">
-                <span class="news-date">22 Aprel 2024</span>
-                <h3>Texniki pasport dair plan və ölçü sənədlərin verilməsi elektronlaşdırılıb</h3>
-            </article>
-
-            <article class="news-card">
-                <a href="news-article.html?i=5" class="news-card-link" aria-label="Texniki pasport dair plan və ölçü sənədlərin verilməsi elektronlaşdırılıb — ətraflı"></a>
-                <img src="/style/assets/images/media5.jpg" alt="">
-                <span class="news-date">11 Aprel 2024</span>
-                <h3>Texniki pasport dair plan və ölçü sənədlərin verilməsi elektronlaşdırılıb</h3>
-            </article>
-
-            <article class="news-card">
-                <a href="news-article.html?i=6" class="news-card-link" aria-label="Texniki pasport dair plan və ölçü sənədlərin verilməsi elektronlaşdırılıb — ətraflı"></a>
-                <img src="/style/assets/images/media8.jpg" alt="">
-                <span class="news-date">02 Aprel 2024</span>
-                <h3>Texniki pasport dair plan və ölçü sənədlərin verilməsi elektronlaşdırılıb</h3>
-            </article>
-
-            <article class="news-card">
-                <a href="news-article.html?i=7" class="news-card-link" aria-label="Texniki pasport dair plan və ölçü sənədlərin verilməsi elektronlaşdırılıb — ətraflı"></a>
-                <img src="/style/assets/images/media9.jpg" alt="">
-                <span class="news-date">22 Mart 2024</span>
-                <h3>Texniki pasport dair plan və ölçü sənədlərin verilməsi elektronlaşdırılıb</h3>
-            </article>
-
-            <article class="news-card">
-                <a href="news-article.html?i=8" class="news-card-link" aria-label="Texniki pasport dair plan və ölçü sənədlərin verilməsi elektronlaşdırılıb — ətraflı"></a>
-                <img src="/style/assets/images/media6.jpg" alt="">
-                <span class="news-date">08 Mart 2024</span>
-                <h3>Texniki pasport dair plan və ölçü sənədlərin verilməsi elektronlaşdırılıb</h3>
-            </article>
-
-            <article class="news-card">
-                <a href="news-article.html?i=9" class="news-card-link" aria-label="Texniki pasport dair plan və ölçü sənədlərin verilməsi elektronlaşdırılıb — ətraflı"></a>
-                <img src="/style/assets/images/hero slide4.jpg" alt="">
-                <span class="news-date">01 Mart 2024</span>
-                <h3>Texniki pasport dair plan və ölçü sənədlərin verilməsi elektronlaşdırılıb</h3>
-            </article>
-        </div>
-
-        <div class="news-pagination">
-            <button class="news-page-prev" aria-label="Əvvəlki səhifə">‹</button>
-            <div class="news-page-numbers"></div>
-            <button class="news-page-next" aria-label="Növbəti səhifə">›</button>
+    <section class="struktur-chart-panel" aria-label="Təşkilat strukturu">
+        <div class="container struktur-chart-container">
+            <div class="struktur-chart-wrap">
+                <img
+                    class="struktur-chart-image"
+                    src="/style/assets/images/struktur-chart.png"
+                    alt="Kadastr və Yerquruluşu Layihə-Tədqiqat Mərkəzi MMC-nin strukturu — Rəhbərlik və şöbələr"
+                    loading="lazy"
+                    decoding="async">
+            </div>
         </div>
     </section>
 </main>
@@ -178,9 +126,11 @@
             <ul class="f-menu">
                 <li><a href="teskilat-haqqinda.html">Təşkilat haqqında</a></li>
                 <li><a href="#">Beynəlxalq əlaqə</a></li>
-                <li><a href="struktur.html">Struktur</a></li>
+                <li><a href="struktur.html" class="is-active">Struktur</a></li>
                 <li><a href="news.html">Xəbərlər</a></li>
+                <li><a href="elanlar.html">Elanlar</a></li>
                 <li><a href="#">Karyera</a></li>
+                <li><a href="elaqe-melumatlari.html">Əlaqə</a></li>
             </ul>
         </div>
 

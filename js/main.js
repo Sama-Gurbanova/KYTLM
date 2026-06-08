@@ -1015,4 +1015,146 @@ document.addEventListener('DOMContentLoaded', function() {
             if (e.key === 'ArrowRight') showNextImage();
         });
     }
+
+    // Video qalereya — pagination
+    const videoGalleryGrid = document.querySelector('.video-gallery-grid');
+    const videoGalleryItems = document.querySelectorAll('.video-gallery-grid .video-gallery-item');
+    const videoQalereyaPagination = document.querySelector('.video-qalereya-pagination');
+    const videoQalereyaPageNumbers = document.querySelector('.video-qalereya-page-numbers');
+    const videoQalereyaPrevButton = document.querySelector('.video-qalereya-page-prev');
+    const videoQalereyaNextButton = document.querySelector('.video-qalereya-page-next');
+
+    if (videoGalleryGrid && videoGalleryItems.length > 0 && videoQalereyaPagination && videoQalereyaPageNumbers && videoQalereyaPrevButton && videoQalereyaNextButton) {
+        let currentVideoPage = 1;
+        const totalVideoPages = 24;
+        const videoContentPages = 4;
+        let isVideoAnimating = false;
+
+        function getVisibleVideoContentPage(page) {
+            return ((page - 1) % videoContentPages) + 1;
+        }
+
+        function buildVideoPaginationItems(currentPage) {
+            if (totalVideoPages <= 7) {
+                const items = [];
+                for (let i = 1; i <= totalVideoPages; i++) {
+                    items.push(i);
+                }
+                return items;
+            }
+            if (currentPage > 4 && currentPage < totalVideoPages) {
+                return [1, 'ellipsis', currentPage - 1, currentPage, currentPage + 1, 'ellipsis', totalVideoPages];
+            }
+            return [1, 2, 3, 4, 'ellipsis', totalVideoPages];
+        }
+
+        function renderVideoGalleryPage(page) {
+            if (isVideoAnimating) return;
+            isVideoAnimating = true;
+            currentVideoPage = Math.min(Math.max(1, page), totalVideoPages);
+            const visibleContentPage = getVisibleVideoContentPage(currentVideoPage);
+
+            videoGalleryGrid.classList.add('is-switching');
+
+            setTimeout(() => {
+                videoGalleryItems.forEach(item => {
+                    const itemPage = Number(item.getAttribute('data-page'));
+                    item.style.display = itemPage === visibleContentPage ? '' : 'none';
+                });
+
+                videoQalereyaPageNumbers.innerHTML = '';
+                buildVideoPaginationItems(currentVideoPage).forEach(item => {
+                    if (item === 'ellipsis') {
+                        const ellipsis = document.createElement('span');
+                        ellipsis.className = 'pagination-ellipsis';
+                        ellipsis.textContent = '...';
+                        videoQalereyaPageNumbers.appendChild(ellipsis);
+                        return;
+                    }
+
+                    const pageButton = document.createElement('button');
+                    pageButton.type = 'button';
+                    pageButton.textContent = String(item);
+                    if (item === currentVideoPage) {
+                        pageButton.classList.add('active');
+                    }
+                    pageButton.addEventListener('click', () => renderVideoGalleryPage(item));
+                    videoQalereyaPageNumbers.appendChild(pageButton);
+                });
+
+                videoQalereyaPrevButton.disabled = currentVideoPage === 1;
+                videoQalereyaNextButton.disabled = currentVideoPage === totalVideoPages;
+
+                requestAnimationFrame(() => {
+                    videoGalleryGrid.classList.remove('is-switching');
+                    setTimeout(() => {
+                        isVideoAnimating = false;
+                    }, 300);
+                });
+            }, 120);
+        }
+
+        videoQalereyaPrevButton.addEventListener('click', () => renderVideoGalleryPage(currentVideoPage - 1));
+        videoQalereyaNextButton.addEventListener('click', () => renderVideoGalleryPage(currentVideoPage + 1));
+
+        renderVideoGalleryPage(1);
+    }
+
+    // Video qalereya — lightbox
+    const videoLightbox = document.getElementById('videoLightbox');
+    const videoLightboxPlayer = document.getElementById('videoLightboxPlayer');
+    const videoLightboxClose = document.getElementById('videoLightboxClose');
+    const videoLightboxBackdrop = document.getElementById('videoLightboxBackdrop');
+    const defaultVideoSrc = videoGalleryGrid
+        ? videoGalleryGrid.getAttribute('data-video-src')
+        : '/style/assets/videos/kyltm-gallery.mp4';
+
+    if (videoLightbox && videoLightboxPlayer && videoGalleryItems && videoGalleryItems.length > 0) {
+        function openVideoLightbox(videoSrc) {
+            if (!videoSrc) return;
+            videoLightboxPlayer.src = videoSrc;
+            videoLightbox.hidden = false;
+            videoLightbox.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('video-lightbox-open');
+            document.body.style.overflow = 'hidden';
+            const playPromise = videoLightboxPlayer.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+                playPromise.catch(() => {});
+            }
+            if (videoLightboxClose) videoLightboxClose.focus();
+        }
+
+        function closeVideoLightbox() {
+            videoLightboxPlayer.pause();
+            videoLightboxPlayer.removeAttribute('src');
+            videoLightboxPlayer.load();
+            videoLightbox.hidden = true;
+            videoLightbox.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('video-lightbox-open');
+            document.body.style.overflow = '';
+        }
+
+        videoGalleryItems.forEach((item) => {
+            item.addEventListener('click', () => {
+                const videoSrc = item.getAttribute('data-video-src') || defaultVideoSrc;
+                openVideoLightbox(videoSrc);
+            });
+        });
+
+        if (videoLightboxClose) {
+            videoLightboxClose.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeVideoLightbox();
+            });
+        }
+
+        if (videoLightboxBackdrop) {
+            videoLightboxBackdrop.addEventListener('click', closeVideoLightbox);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (videoLightbox.hidden) return;
+            if (e.key === 'Escape') closeVideoLightbox();
+        });
+    }
 });

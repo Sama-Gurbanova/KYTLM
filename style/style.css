@@ -5338,6 +5338,184 @@ body.layiheler-page .nav-links > li.active-nav > a {
     }
 }
 
+/* ==================== LAYİHƏ TƏFƏRRÜATI ==================== */
+body.layihe-article-page .nav-links > li.active-nav > a {
+    color: #1d9f6f;
+    font-weight: 600;
+}
+
+body.layihe-article-page .news-breadcrumb.container,
+body.layihe-article-page .layihe-article-breadcrumb {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    gap: 10px;
+    margin-bottom: 28px !important;
+}
+
+body.layihe-article-page .layihe-article-breadcrumb a {
+    color: #8f8f8f;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+body.layihe-article-page .layihe-article-breadcrumb a:hover {
+    opacity: 0.85;
+}
+
+.layihe-article-bc-sep {
+    color: #c8c8c8;
+    font-size: 13px;
+    line-height: 1;
+    user-select: none;
+}
+
+a.layihe-article-bc-active {
+    color: #1d9f6f !important;
+    font-weight: 600;
+}
+
+.layihe-article-page .layihe-article-main {
+    display: block;
+    padding-bottom: 64px;
+}
+
+.layihe-article {
+    display: block !important;
+    width: 92%;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 0 48px;
+    box-sizing: border-box;
+}
+
+.layihe-article-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 48px 56px;
+    align-items: start;
+}
+
+.layihe-article-gallery-main {
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    line-height: 0;
+    background: #e8e8e8;
+    padding: 0;
+    border: none;
+    cursor: zoom-in;
+    display: block;
+    text-align: left;
+}
+
+.layihe-article-gallery-main:hover img {
+    opacity: 0.92;
+}
+
+.layihe-article-gallery-main img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+}
+
+.layihe-article-thumbs {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.layihe-article-thumb {
+    display: block;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    background: none;
+    opacity: 0.65;
+    transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.layihe-article-thumb:hover {
+    opacity: 0.9;
+}
+
+.layihe-article-thumb.is-active {
+    opacity: 1;
+    border-color: #1d9f6f;
+}
+
+.layihe-article-thumb img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+}
+
+.layihe-article-content {
+    padding-top: 4px;
+}
+
+.layihe-article-title {
+    color: #141c24;
+    font-size: clamp(22px, 2.4vw, 34px);
+    line-height: 1.32;
+    font-weight: 700;
+    margin: 0 0 24px;
+    text-align: left;
+}
+
+.layihe-article-body {
+    color: #3a3a3a;
+    font-size: 15px;
+    line-height: 1.7;
+    text-align: left;
+}
+
+.layihe-article-body p {
+    margin: 0 0 16px;
+}
+
+@media (max-width: 992px) {
+    .layihe-article-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .layihe-article-content {
+        padding-top: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .layihe-article-thumbs {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .layihe-article-title {
+        font-size: 22px;
+        margin-bottom: 18px;
+    }
+
+    .layihe-article-body {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .layihe-article-thumbs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
 /* Foto qalereya — Figma: başlıq üstdə, şəbəkə, pagination mərkəzdə */
 body.foto-qalereya-page .news-breadcrumb.container {
     display: flex !important;

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>KYLTM - Layihə</title>
+   <link rel="stylesheet" href="/style/style.css">
+</head>
+<body class="news-page layihe-article-page">
+
+<header class="navbar">
+    <div class="container">
+        <div class="logo">
+            <a href="index.html"><img src="/style/assets/icons/LOGOrengli.png" alt="KYLTM Logo"></a>
+            <div class="logo-text">
+                <b>KADASTR VƏ YERQURULUŞU</b>
+                <b>LAYİHƏ - TƏDQİQAT MƏRKƏZİ</b>
+                <small>MƏHDUD MƏSULİYYƏTLİ CƏMİYYƏT</small>
+            </div>
+            <button type="button" class="mobile-menu-toggle" aria-label="Menyunu aç">☰</button>
+        </div>
+
+        <nav>
+            <ul class="nav-links">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-trigger">Haqqımızda <span class="arrow-icon">▾</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="teskilat-haqqinda.html">Təşkilat haqqında</a></li>
+                        <li><a href="struktur.html">Struktur</a></li>
+                        <li><a href="#">Beynəlxalq əlaqə</a></li>
+                        <li><a href="bunlari-bilmek-faydalidir.html">Bunları bilmək faydalıdır</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Xidmətlər</a></li>
+                <li class="active-nav"><a href="layiheler.html">Layihələr</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-trigger">Media <span class="arrow-icon">▾</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="news.html">Xəbərlər</a></li>
+                        <li><a href="elanlar.html">Elanlar</a></li>
+                        <li><a href="foto-qalereya.html">Foto qalereya</a></li>
+                        <li><a href="video-qalereya.html">Video qalereya</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-trigger">Əlaqə <span class="arrow-icon">▾</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="elaqe-melumatlari.html">Əlaqə məlumatları</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="header-right">
+            <div class="lang-wrapper">
+                <div class="header-box">AZ</div>
+                <div class="dropdown-content">
+                    <div class="header-box">EN</div>
+                </div>
+            </div>
+
+            <div class="header-box search-box" id="searchBox">
+                <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d1d1d" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
+
+            <div class="search-overlay" id="searchOverlay">
+                <div class="search-expanded" id="searchExpanded">
+                    <svg class="search-icon-inside" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="searchInput" placeholder="Axtarış..." autocomplete="off">
+                    <button class="search-close" id="searchClose">×</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="news-main layihe-article-main">
+    <div class="container news-breadcrumb layihe-article-breadcrumb">
+        <a href="index.html">Ana səhifə</a>
+        <span class="layihe-article-bc-sep" aria-hidden="true">›</span>
+        <a href="layiheler.html" class="layihe-article-bc-active">Layihələr</a>
+    </div>
+
+    <article class="container layihe-article">
+        <div class="layihe-article-layout">
+            <div class="layihe-article-gallery">
+                <button type="button" class="layihe-article-gallery-main" id="layiheArticleHeroBtn" aria-label="Şəkli böyüt">
+                    <img id="layiheArticleHeroImg" src="/style/assets/images/layihe6.jpg" alt="">
+                </button>
+                <div class="layihe-article-thumbs" id="layiheArticleThumbs" role="list" aria-label="Layihə şəkilləri"></div>
+            </div>
+
+            <div class="layihe-article-content">
+                <h1 class="layihe-article-title" id="layiheArticleTitle">Layihə</h1>
+                <div class="layihe-article-body" id="layiheArticleBody">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </article>
+</main>
+
+<div class="foto-lightbox layihe-lightbox" id="layiheLightbox" hidden aria-hidden="true">
+    <div class="foto-lightbox-backdrop" id="layiheLightboxBackdrop"></div>
+    <div class="foto-lightbox-inner" role="dialog" aria-modal="true" aria-label="Layihə qalereyası">
+        <button type="button" class="foto-lightbox-close" id="layiheLightboxClose" aria-label="Bağla">
+            <span aria-hidden="true">×</span>
+        </button>
+        <div class="foto-lightbox-main">
+            <button type="button" class="foto-lightbox-nav foto-lightbox-prev" id="layiheLightboxPrev" aria-label="Əvvəlki şəkil">
+                <span aria-hidden="true">‹</span>
+            </button>
+            <div class="foto-lightbox-stage">
+                <img class="foto-lightbox-image" id="layiheLightboxImage" src="" alt="">
+            </div>
+            <button type="button" class="foto-lightbox-nav foto-lightbox-next" id="layiheLightboxNext" aria-label="Növbəti şəkil">
+                <span aria-hidden="true">›</span>
+            </button>
+        </div>
+        <div class="foto-lightbox-thumbs-wrap">
+            <div class="foto-lightbox-thumbs" id="layiheLightboxThumbs"></div>
+            <button type="button" class="foto-lightbox-thumbs-scroll" id="layiheLightboxThumbsScroll" aria-label="Thumbnail siyahısını sürüşdür">
+                <span aria-hidden="true">›</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<footer class="main-footer">
+    <div class="container footer-wrapper">
+        <div class="footer-contact-form">
+            <div class="form-header">
+               <h2>Layihəni bizimlə başlamağa hazırsınız?</h2>
+               <h3 class="highlight-text">Bir sorğu göndərin!</h3>
+            </div>
+            <div class="form-body-wrapper">
+                <form>
+                    <input type="text" placeholder="Ad*" class="f-input">
+                    <input type="text" placeholder="Soyad*" class="f-input">
+                    <input type="email" placeholder="E-mail*" class="f-input">
+                    <button type="submit" class="f-submit">Göndərin ⟶</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-links-section">
+            <ul class="f-menu">
+                <li><a href="teskilat-haqqinda.html">Təşkilat haqqında</a></li>
+                <li><a href="#">Beynəlxalq əlaqə</a></li>
+                <li><a href="struktur.html">Struktur</a></li>
+                <li><a href="news.html">Xəbərlər</a></li>
+                <li><a href="#">Karyera</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-info-section">
+            <h4>Əlaqə</h4>
+            <div class="contact-details">
+                <p>Azərbaycan, Bakı şəhəri, Heydər Əliyev Prospekti 103B</p>
+                <p>(994-12) 480 42 20</p>
+                <p>office@kyltm.gov.az</p>
+            </div>
+            <div class="social-icons">
+                <a href="#" class="icon-circle"><img src="/style/assets/icons/instagraml.svg" alt="ig"></a>
+                <a href="#" class="icon-circle"><img src="/style/assets/icons/facebookl.svg" alt="fb"></a>
+                <a href="#" class="icon-circle"><img src="/style/assets/icons/youtube.svg" alt="yt"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container f-bottom-flex">
+            <span>© 2024 - Kadastr və Yerquruluşu Layihə-Tədqiqat Mərkəzi</span>
+            <a href="#">Qaydalar, şərtlər və məxfilik səhifəsi</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/main.js"></script>
+<script>
+(function () {
+    var items = [
+        {
+            title: 'Xocalı və Xocavənd rayonları ərazisində torpaqların elektron uçotu işləri çərçivəsində ərazidə çöl-ölçmə işlərinin aparılması bütün növ daşınmaz əmlak obyektlərinin, kommunikasiyaların və s. (torpaq, tikili, yollar) koordinatlarının götürülməsi, onların həndəsi ölçülərinin müəyyən edilməsi işləri həyata keçirilir.',
+            body: '',
+            gallery: [
+                '/style/assets/images/layihe1.jpg',
+                '/style/assets/images/layihe5.jpg',
+                '/style/assets/images/layihe4.jpg',
+                '/style/assets/images/layihe3.jpg'
+            ]
+        },
+        {
+            title: 'Naxçıvan MR ərazisində AzPOS şəbəkəsinin yaradılması',
+            body: 'Naxçıvan Muxtar Respublikası ərazisində AzPOS (Azərbaycan Positioning System) şəbəkəsinin yaradılması layihəsi həyata keçirilir. Şəbəkə geodezik ölçmələrin dəqiqliyini artırmaq və kadastr işlərinin sürətləndirilməsi məqsədilə formalaşdırılır.',
+            gallery: [
+                '/style/assets/images/layihe2.png',
+                '/style/assets/images/layihe1.jpg',
+                '/style/assets/images/layihe3.jpg',
+                '/style/assets/images/layihe4.jpg'
+            ]
+        },
+        {
+            title: 'AzPOS xidmətlərinin elektronlaşdırılması',
+            body: 'AzPOS xidmətlərinin elektron platformaya keçirilməsi layihəsi çərçivəsində istifadəçilər onlayn rejimdə müraciət edə, ölçmə nəticələrini rəqəmsal formatda əldə edə bilirlər. Sistem vahid informasiya mübadiləsi prinsipi əsasında qurulub.',
+            gallery: [
+                '/style/assets/images/layihe3.jpg',
+                '/style/assets/images/layihe2.png',
+                '/style/assets/images/layihe5.jpg',
+                '/style/assets/images/layihe1.jpg'
+            ]
+        },
+        {
+            title: 'ÜRİS-in müasir standartlar əsasında yeni texnologiyaların tətbiqi əsasında təkmilləşdirilməsi',
+            body: 'Unified Real Estate Information System (ÜRİS) müasir beynəlxalq standartlara uyğun olaraq yenilənir. Yeni texnologiyaların tətbiqi daşınmaz əmlak məlumatlarının idarə olunmasını, paylaşılmasını və təhlilini daha effektiv edir.',
+            gallery: [
+                '/style/assets/images/layihe4.jpg',
+                '/style/assets/images/layihe3.jpg',
+                '/style/assets/images/layihe2.png',
+                '/style/assets/images/layihe6.jpg'
+            ]
+        },
+        {
+            title: 'Xocalı və Xocavənd rayonları ərazisində torpaqların elektron uçotu işləri çərçivəsində ərazidə çöl-ölçmə işlərinin aparılması bütün növ daşınmaz əmlak obyektlərinin, kommunikasiyaların və s. (torpaq, tikili, yollar) koordinatlarının götürülməsi, onların həndəsi ölçülərinin müəyyən edilməsi işləri həyata keçirilir.',
+            body: '',
+            gallery: [
+                '/style/assets/images/layihe5.jpg',
+                '/style/assets/images/layihe1.jpg',
+                '/style/assets/images/layihe6.jpg',
+                '/style/assets/images/layihe7.jpg'
+            ]
+        },
+        {
+            title: '«Meliorasiya və Su Təsərrüfatı» ASC tərəfindən həyata keçirilən Yengicə su anbarının işçi layihəsinə əsasən Qəbələ rayonunda su anbarının, suaparıcı və sağ-sol sahil magistral kanallarının, gil karxanasının və elektrik xəttinin tikintisi',
+            body: '',
+            gallery: [
+                '/style/assets/images/layihe6.jpg',
+                '/style/assets/images/layihe7.jpg',
+                '/style/assets/images/layihe4.jpg',
+                '/style/assets/images/layihe1.jpg'
+            ]
+        },
+        {
+            title: 'Əlicançay su anbarının tikintisi',
+            body: 'Əlicançay su anbarının tikintisi layihəsi ərazinin su ehtiyaclarının ödənilməsi, kənd təsərrüfatının inkişafı və meliorasiya sistemlərinin təkmilləşdirilməsi məqsədilə həyata keçirilir. Anbar müasir hidrotexniki tələblərə cavab verən layihə həlli əsasında tikilir.',
+            gallery: [
+                '/style/assets/images/layihe7.jpg',
+                '/style/assets/images/layihe6.jpg',
+                '/style/assets/images/layihe5.jpg',
+                '/style/assets/images/layihe3.jpg'
+            ]
+        }
+    ];
+
+    var params = new URLSearchParams(window.location.search);
+    var idx = parseInt(params.get('i'), 10);
+    if (isNaN(idx) || idx < 1 || idx > items.length) idx = 1;
+
+    var g = parseInt(params.get('g'), 10);
+    var data = items[idx - 1];
+    var titleEl = document.getElementById('layiheArticleTitle');
+    var bodyEl = document.getElementById('layiheArticleBody');
+    var heroEl = document.getElementById('layiheArticleHeroImg');
+    var thumbsEl = document.getElementById('layiheArticleThumbs');
+
+    if (titleEl) {
+        titleEl.textContent = data.title;
+        document.title = 'KYLTM — ' + data.title;
+    }
+
+    if (bodyEl) {
+        if (data.body) {
+            bodyEl.innerHTML = '<p>' + data.body + '</p>';
+            bodyEl.hidden = false;
+        } else {
+            bodyEl.innerHTML = '';
+            bodyEl.hidden = true;
+        }
+    }
+
+    var activeIndex = 0;
+    var lightboxIndex = 0;
+    if (!isNaN(g) && g >= 1 && g <= data.gallery.length) {
+        activeIndex = g - 1;
+    }
+    lightboxIndex = activeIndex;
+
+    function setActiveImage(index) {
+        activeIndex = index;
+        if (heroEl) {
+            heroEl.src = data.gallery[index];
+            heroEl.alt = data.title;
+        }
+        thumbsEl.querySelectorAll('.layihe-article-thumb').forEach(function (btn, i) {
+            btn.classList.toggle('is-active', i === index);
+            btn.setAttribute('aria-current', i === index ? 'true' : 'false');
+        });
+    }
+
+    if (thumbsEl) {
+        thumbsEl.innerHTML = '';
+        data.gallery.forEach(function (src, thumbIndex) {
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'layihe-article-thumb' + (thumbIndex === activeIndex ? ' is-active' : '');
+            btn.setAttribute('aria-label', 'Şəkil ' + (thumbIndex + 1));
+            btn.setAttribute('aria-current', thumbIndex === activeIndex ? 'true' : 'false');
+            btn.innerHTML = '<img src="' + src + '" alt="">';
+            btn.addEventListener('click', function () {
+                setActiveImage(thumbIndex);
+                lightboxIndex = thumbIndex;
+                var url = new URL(window.location.href);
+                url.searchParams.set('g', String(thumbIndex + 1));
+                window.history.replaceState({}, '', url);
+            });
+            thumbsEl.appendChild(btn);
+        });
+    }
+
+    setActiveImage(activeIndex);
+
+    var layiheLightbox = document.getElementById('layiheLightbox');
+    var layiheLightboxImage = document.getElementById('layiheLightboxImage');
+    var layiheLightboxThumbs = document.getElementById('layiheLightboxThumbs');
+    var layiheLightboxClose = document.getElementById('layiheLightboxClose');
+    var layiheLightboxBackdrop = document.getElementById('layiheLightboxBackdrop');
+    var layiheLightboxPrev = document.getElementById('layiheLightboxPrev');
+    var layiheLightboxNext = document.getElementById('layiheLightboxNext');
+    var layiheLightboxThumbsScroll = document.getElementById('layiheLightboxThumbsScroll');
+    var layiheHeroBtn = document.getElementById('layiheArticleHeroBtn');
+
+    function scrollLayiheLightboxThumb() {
+        if (!layiheLightboxThumbs) return;
+        var activeThumb = layiheLightboxThumbs.querySelector('.foto-lightbox-thumb.active');
+        if (activeThumb) {
+            activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+    }
+
+    function updateLayiheLightbox() {
+        if (!layiheLightboxImage || !data.gallery.length) return;
+        lightboxIndex = (lightboxIndex + data.gallery.length) % data.gallery.length;
+        layiheLightboxImage.src = data.gallery[lightboxIndex];
+        layiheLightboxImage.alt = data.title;
+
+        if (layiheLightboxThumbs) {
+            layiheLightboxThumbs.innerHTML = '';
+            data.gallery.forEach(function (src, index) {
+                var thumbBtn = document.createElement('button');
+                thumbBtn.type = 'button';
+                thumbBtn.className = 'foto-lightbox-thumb' + (index === lightboxIndex ? ' active' : '');
+                thumbBtn.setAttribute('aria-label', 'Şəkil ' + (index + 1));
+                thumbBtn.setAttribute('aria-current', index === lightboxIndex ? 'true' : 'false');
+                var thumbImg = document.createElement('img');
+                thumbImg.src = src;
+                thumbImg.alt = '';
+                thumbBtn.appendChild(thumbImg);
+                thumbBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    lightboxIndex = index;
+                    updateLayiheLightbox();
+                    setActiveImage(index);
+                    var url = new URL(window.location.href);
+                    url.searchParams.set('g', String(index + 1));
+                    window.history.replaceState({}, '', url);
+                });
+                layiheLightboxThumbs.appendChild(thumbBtn);
+            });
+            requestAnimationFrame(scrollLayiheLightboxThumb);
+        }
+    }
+
+    function openLayiheLightbox(startIndex) {
+        if (!layiheLightbox || !data.gallery.length) return;
+        lightboxIndex = Math.min(Math.max(0, startIndex), data.gallery.length - 1);
+        updateLayiheLightbox();
+        layiheLightbox.hidden = false;
+        layiheLightbox.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('foto-lightbox-open');
+        document.body.style.overflow = 'hidden';
+        if (layiheLightboxClose) layiheLightboxClose.focus();
+    }
+
+    function closeLayiheLightbox() {
+        if (!layiheLightbox) return;
+        layiheLightbox.hidden = true;
+        layiheLightbox.setAttribute('aria-hidden', 'true');
+        if (layiheLightboxImage) layiheLightboxImage.removeAttribute('src');
+        document.body.classList.remove('foto-lightbox-open');
+        document.body.style.overflow = '';
+    }
+
+    if (layiheHeroBtn) {
+        layiheHeroBtn.addEventListener('click', function () {
+            openLayiheLightbox(activeIndex);
+        });
+    }
+
+    if (layiheLightboxClose) {
+        layiheLightboxClose.addEventListener('click', function (e) {
+            e.stopPropagation();
+            closeLayiheLightbox();
+        });
+    }
+
+    if (layiheLightboxBackdrop) {
+        layiheLightboxBackdrop.addEventListener('click', closeLayiheLightbox);
+    }
+
+    if (layiheLightboxPrev) {
+        layiheLightboxPrev.addEventListener('click', function (e) {
+            e.stopPropagation();
+            lightboxIndex -= 1;
+            updateLayiheLightbox();
+            setActiveImage(lightboxIndex);
+        });
+    }
+
+    if (layiheLightboxNext) {
+        layiheLightboxNext.addEventListener('click', function (e) {
+            e.stopPropagation();
+            lightboxIndex += 1;
+            updateLayiheLightbox();
+            setActiveImage(lightboxIndex);
+        });
+    }
+
+    if (layiheLightboxThumbsScroll && layiheLightboxThumbs) {
+        layiheLightboxThumbsScroll.addEventListener('click', function (e) {
+            e.stopPropagation();
+            layiheLightboxThumbs.scrollBy({ left: 220, behavior: 'smooth' });
+        });
+    }
+
+    document.addEventListener('keydown', function (e) {
+        if (!layiheLightbox || layiheLightbox.hidden) return;
+        if (e.key === 'Escape') closeLayiheLightbox();
+        if (e.key === 'ArrowLeft') {
+            lightboxIndex -= 1;
+            updateLayiheLightbox();
+            setActiveImage(lightboxIndex);
+        }
+        if (e.key === 'ArrowRight') {
+            lightboxIndex += 1;
+            updateLayiheLightbox();
+            setActiveImage(lightboxIndex);
+        }
+    });
+})();
+</script>
+</body>
+</html>

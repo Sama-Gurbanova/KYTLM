@@ -6128,3 +6128,345 @@ body.video-qalereya-page .video-qalereya-pagination {
         font-size: 24px;
     }
 }
+
+/* Xidmətlər səhifəsi */
+body.xidmetler-page .nav-links > li.active-nav > a {
+    color: #1d9f6f;
+    font-weight: 600;
+}
+
+.xidmetler-main {
+    position: relative;
+    overflow: hidden;
+    padding: 0 0 90px;
+}
+
+body.xidmetler-page .xidmetler-page-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    width: 92% !important;
+    max-width: 1800px !important;
+    margin: 0 auto 48px !important;
+    padding-top: 8px;
+}
+
+.xidmetler-main::after {
+    content: "";
+    position: absolute;
+    right: max(-40px, calc((100% - 1100px) / 2 - 320px));
+    top: 20px;
+    width: 560px;
+    height: 560px;
+    background-image: url('/style/assets/icons/Vector.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.04;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.xidmetler-inner {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.xidmetler-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #8f8f8f;
+    margin-bottom: 20px;
+}
+
+.xidmetler-breadcrumb a {
+    color: #8f8f8f;
+    text-decoration: none;
+}
+
+.xidmetler-breadcrumb a:hover {
+    color: #1d9f6f;
+}
+
+.xidmetler-breadcrumb-current {
+    color: #00a991;
+}
+
+.xidmetler-section {
+    width: 100%;
+}
+
+.xidmetler-page-title {
+    color: #1d9f6f;
+    font-size: 52px;
+    font-weight: 600;
+    margin-bottom: 0;
+    line-height: 1.1;
+}
+
+.xidmetler-block {
+    width: 100%;
+    margin-bottom: 96px;
+}
+
+.xidmetler-block:last-child {
+    margin-bottom: 0;
+}
+
+.xidmetler-block-title {
+    color: #1d9f6f;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+
+.xidmetler-block-image {
+    width: 100%;
+    margin-bottom: 18px;
+}
+
+.xidmetler-block-image img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    display: block;
+}
+
+.xidmetler-block-intro {
+    color: #8f8f8f;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.xidmetler-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.xidmetler-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 30px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.xidmetler-list li:first-child {
+    border-top: 1px solid #e0e0e0;
+}
+
+.xidmetler-list-num {
+    color: #00a991;
+    font-size: 18px;
+    font-weight: 600;
+    min-width: 32px;
+    line-height: 1.5;
+    flex-shrink: 0;
+}
+
+.xidmetler-list-text {
+    color: #1a1d1c;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.45;
+}
+
+.services-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.services-title a:hover {
+    opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+    body.xidmetler-page .xidmetler-main {
+        padding: 0 0 48px;
+    }
+
+    body.xidmetler-page .xidmetler-main::after {
+        display: none;
+    }
+
+    body.xidmetler-page .xidmetler-page-header {
+        width: calc(100% - 24px) !important;
+        max-width: none !important;
+        margin: 0 auto 28px !important;
+        padding-top: 0;
+    }
+
+    body.xidmetler-page .xidmetler-breadcrumb {
+        font-size: 10px;
+        margin-bottom: 14px;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    body.xidmetler-page .xidmetler-page-title {
+        font-size: 32px;
+        margin-bottom: 0;
+        line-height: 1.15;
+    }
+
+    body.xidmetler-page .xidmetler-inner {
+        width: calc(100% - 24px);
+        max-width: none;
+    }
+
+    body.xidmetler-page .xidmetler-block {
+        margin-bottom: 48px;
+    }
+
+    body.xidmetler-page .xidmetler-block-title {
+        font-size: 22px;
+        margin-bottom: 16px;
+        line-height: 1.25;
+    }
+
+    body.xidmetler-page .xidmetler-block-image {
+        margin-bottom: 12px;
+    }
+
+    body.xidmetler-page .xidmetler-block-image img {
+        height: 240px;
+    }
+
+    body.xidmetler-page .xidmetler-block-intro {
+        font-size: 12px;
+        line-height: 1.5;
+        margin-bottom: 18px;
+    }
+
+    body.xidmetler-page .xidmetler-list li {
+        gap: 12px;
+        padding: 18px 0;
+    }
+
+    body.xidmetler-page .xidmetler-list-num {
+        font-size: 15px;
+        min-width: 28px;
+    }
+
+    body.xidmetler-page .xidmetler-list-text {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+
+    body.xidmetler-page .main-footer {
+        margin-top: 20px !important;
+    }
+
+    body.xidmetler-page .main-footer .footer-wrapper {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        align-items: flex-start !important;
+        gap: 24px 20px !important;
+        padding: 0 12px !important;
+    }
+
+    body.xidmetler-page .footer-contact-form {
+        flex: 1 1 280px !important;
+        min-width: 0;
+    }
+
+    body.xidmetler-page .footer-links-section,
+    body.xidmetler-page .footer-info-section {
+        flex: 1 1 220px !important;
+        min-width: 0;
+    }
+}
+
+@media (max-width: 360px) {
+    body.xidmetler-page .xidmetler-main {
+        padding: 0 0 36px;
+    }
+
+    body.xidmetler-page .xidmetler-page-header {
+        width: calc(100% - 16px) !important;
+        margin-bottom: 20px !important;
+    }
+
+    body.xidmetler-page .xidmetler-breadcrumb {
+        display: none;
+    }
+
+    body.xidmetler-page .xidmetler-page-title {
+        font-size: 28px;
+    }
+
+    body.xidmetler-page .xidmetler-inner {
+        width: calc(100% - 16px);
+    }
+
+    body.xidmetler-page .xidmetler-block {
+        margin-bottom: 36px;
+    }
+
+    body.xidmetler-page .xidmetler-block-title {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+
+    body.xidmetler-page .xidmetler-block-image img {
+        height: 180px;
+    }
+
+    body.xidmetler-page .xidmetler-block-intro {
+        font-size: 11px;
+        margin-bottom: 14px;
+    }
+
+    body.xidmetler-page .xidmetler-list li {
+        gap: 10px;
+        padding: 14px 0;
+    }
+
+    body.xidmetler-page .xidmetler-list-num {
+        font-size: 13px;
+        min-width: 24px;
+    }
+
+    body.xidmetler-page .xidmetler-list-text {
+        font-size: 14px;
+        line-height: 1.35;
+    }
+
+    body.xidmetler-page .main-footer .footer-wrapper {
+        flex-direction: column !important;
+        gap: 22px !important;
+        padding: 0 10px !important;
+    }
+
+    body.xidmetler-page .footer-contact-form,
+    body.xidmetler-page .footer-links-section,
+    body.xidmetler-page .footer-info-section {
+        width: 100% !important;
+        flex: none !important;
+    }
+
+    body.xidmetler-page .footer-contact-form h2,
+    body.xidmetler-page .highlight-text {
+        font-size: 16px !important;
+    }
+
+    body.xidmetler-page .f-menu a {
+        font-size: 15px !important;
+    }
+
+    body.xidmetler-page .footer-info-section h4 {
+        font-size: 18px !important;
+    }
+
+    body.xidmetler-page .contact-details p {
+        font-size: 10px !important;
+    }
+}
